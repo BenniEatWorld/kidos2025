@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Startansicht</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="benni.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo" />
+    </div>
+    <div class="menu-container">
+      <div class="menu-button" title="Menü">
+        <div></div><div></div><div></div>
+      </div>
+      <div class="menu-content">
+        <a href="#" onclick="loadContent('EB.htm')">Entwicklungsbericht</a>
+        <a href="#" onclick="loadContent('EIN.htm')">Einschätzung</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="center-content" class="content-area">
+      <h1>Was möchtest du machen?</h1>
+      <div class="button-row">
+        <button onclick="loadContent('EB.htm')" class="square-button">Entwicklungsbericht</button>
+        <button onclick="loadContent('EIN.htm')" class="square-button">Einschätzung</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Benjamin – Alle Rechte vorbehalten
+  </footer>
+
+  <script>
+    function loadContent(url) {
+      fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error("Ladevorgang fehlgeschlagen");
+          return response.text();
+        })
+        .then(html => {
+          document.getElementById("center-content").innerHTML = html;
+
+          if (url === "EB.htm") {
+            const script = document.createElement("script");
+            script.src = "app.js";
+            script.defer = true;
+            document.body.appendChild(script);
+          }
+
+          window.scrollTo(0, 0);
+        })
+        .catch(err => {
+          document.getElementById("center-content").innerHTML =
+            `<p style="color: red;">Fehler beim Laden: ${err.message}</p>`;
+        });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<div style="background: var(--accent-2); color: white; padding: 0.75rem 1rem; margin-bottom: 1rem; border-radius: 4px;">
+  📋 Entwicklungsbericht geladen – Umfrage & Bewertung verfügbar
+</div>
+
+<h2 class="section-heading">Erhebungsdaten</h2>
+
+<form id="survey-form" class="form-section">
+  <div class="form-row">
+    <label>Name<br>
+      <input type="text" id="name" required placeholder="z. B. Anna Müller" />
+    </label>
+    <label>Alter<br>
+      <input type="number" id="age" min="0" max="120" required />
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Pädagog*in<br>
+      <input type="text" id="educator" required />
+    </label>
+    <label>Datum der Erhebung<br>
+      <input type="date" id="date" required />
+    </label>
+  </div>
+</form>
+
+<h3 class="section-subheading">Aussagen bewerten</h3>
+
+<div class="table-wrapper">
+  <table id="rating-table">
+    <colgroup>
+      <col class="aussage" />
+      <col class="rating" /><col class="rating" /><col class="rating" />
+      <col class="rating" /><col class="rating" /><col class="rating" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Aussage</th>
+        <th>irrelevant<br>/ nicht bewertbar</th>
+        <th>trifft<br>nicht zu</th>
+        <th>trifft eher<br>nicht zu</th>
+        <th>trifft<br>zu</th>
+        <th>trifft eher<br>zu</th>
+        <th>trifft voll<br>zu</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="export-container">
+  <button id="clear-btn">Löschen</button>
+  <button id="load-btn">Laden</button>
+  <button id="export-btn">Speichern</button>
+</div>
+
+<input type="file" id="load-file" accept=".csv" style="display: none;" />
