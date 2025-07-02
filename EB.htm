@@ -1,11 +1,14 @@
-<h1 class="section-heading" style="margin-top:2rem; margin-bottom:0.5rem; text-align:center; letter-spacing:0.04em;">ENTWICKLUNGSBERICHT</h1>
+
+<div style="position:relative;">
+  <h1 class="section-heading" style="margin-top:2rem; margin-bottom:0.5rem; text-align:center; letter-spacing:0.04em;">ENTWICKLUNGSBERICHT</h1>
+  <button class="start-login-btn" style="position:fixed;top:1.2rem;right:10.75em;transform:none;min-width:110px;z-index:1001;" onclick="window.location.href='kidos2025.htm'" type="button">Zurück</button>
+</div>
 
 <div class="info-box" style="max-width:600px; margin:0 auto 1.5rem auto; background:var(--bg-dark-3); color:var(--text-light-2); border-left:4px solid var(--accent-2); border-radius:6px; padding:0.9rem 1.2rem 0.9rem 1.1rem; font-size:1rem; box-shadow:0 2px 8px 0 #0002;">
   In diesem Entwicklungsbericht werden die individuellen Fortschritte und Kompetenzen eines Kindes dokumentiert. Bitte füllen Sie die Felder aus und bewerten Sie die Aussagen nach bestem Wissen und Gewissen.
 </div>
-<div style="max-width:600px; margin:0 auto 1.2rem auto; text-align:left;">
-  <button onclick="window.location.href='index.htm'" class="back-btn" type="button">&#8592; Zurück</button>
-</div>
+
+
 
 
 <h2 class="section-heading">Erhebungsdaten</h2>
@@ -60,6 +63,19 @@
 </div>
 
 <input type="file" id="load-file" accept=".csv" style="display: none;" />
+<header style="display:flex;align-items:center;justify-content:center;padding:0;background:var(--bg-dark-1);box-shadow:0 4px 18px #0006;z-index:10;height:70px;position:relative;">
+  <div class="logo" style="display:flex;align-items:center;justify-content:center;width:100%;">
+    <img src="gfx/logo_menu.png" alt="Kidos-logo" height="54" style="margin-bottom:0;display:block;margin-left:auto;margin-right:auto;" />
+  </div>
+</header>
+<main style="position:relative;">
+  <div style="position:absolute;top:0.5em;right:1.2em;z-index:20;display:flex;flex-direction:column;align-items:flex-end;gap:0.5em;">
+    <button class="start-login-btn" onclick="window.location.href='index.htm'" type="button">Ausloggen &larr;</button>
+  </div>
+  <div id="main-scroll-inner">
+    <!-- ...bisheriger Main-Inhalt... -->
+  </div>
+</main>
 <main>
   <div id="main-scroll-inner">
     <!-- ...bisheriger Main-Inhalt... -->
