@@ -1,0 +1,74 @@
+{
+  "titel": "Einschätzungsbogen: Soziales, Emotionales, ADHS/ADS/ASS",
+  "kategorien": [
+    {
+      "kategorie": "Soziales Verhalten",
+      "unterkategorien": [
+        {
+          "unterkategorie": "Interaktion mit Gleichaltrigen",
+          "aussagen": [
+            "Findet leicht Kontakt zu anderen Kindern.",
+            "Kann sich in eine Gruppe integrieren.",
+            "Zeigt Empathie gegenüber anderen.",
+            "Wird häufig von anderen Kindern ausgeschlossen.",
+            "Hat Schwierigkeiten, Freundschaften zu schließen."
+          ]
+        },
+        {
+          "unterkategorie": "Kommunikation",
+          "aussagen": [
+            "Kann sich altersgerecht ausdrücken.",
+            "Versteht nonverbale Signale (Mimik, Gestik).",
+            "Fällt durch unangemessene Kommentare auf.",
+            "Weicht Blickkontakt häufig aus."
+          ]
+        }
+      ]
+    },
+    {
+      "kategorie": "Emotionale Entwicklung",
+      "unterkategorien": [
+        {
+          "unterkategorie": "Selbstregulation",
+          "aussagen": [
+            "Kann Gefühle angemessen zeigen.",
+            "Beruhigt sich nach Aufregung schnell wieder.",
+            "Reagiert häufig übermäßig emotional.",
+            "Hat häufig Wutausbrüche oder starke Stimmungsschwankungen."
+          ]
+        },
+        {
+          "unterkategorie": "Ängste und Sorgen",
+          "aussagen": [
+            "Wirkt oft ängstlich oder besorgt.",
+            "Zieht sich bei Unsicherheit zurück.",
+            "Spricht offen über Sorgen oder Ängste."
+          ]
+        }
+      ]
+    },
+    {
+      "kategorie": "ADHS / ADS / Autismus-Spektrum",
+      "unterkategorien": [
+        {
+          "unterkategorie": "Aufmerksamkeit & Impulsivität",
+          "aussagen": [
+            "Lässt sich leicht ablenken.",
+            "Handelt oft impulsiv, ohne nachzudenken.",
+            "Hat Schwierigkeiten, Anweisungen zu folgen.",
+            "Beendet Aufgaben selten vollständig."
+          ]
+        },
+        {
+          "unterkategorie": "Autistische Verhaltensweisen",
+          "aussagen": [
+            "Besteht auf festen Routinen oder Ritualen.",
+            "Reagiert empfindlich auf Geräusche, Licht oder Berührungen.",
+            "Zeigt wenig Interesse an sozialen Kontakten.",
+            "Hat spezielle, intensive Interessen."
+          ]
+        }
+      ]
+    }
+  ]
+}

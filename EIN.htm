@@ -1,0 +1,83 @@
+<h1 class="section-heading" style="margin-top:2rem; margin-bottom:0.5rem; text-align:center; letter-spacing:0.04em;">ENTWICKLUNGSEINSCHÄTZUNG</h1>
+
+<div class="info-box" style="max-width:600px; margin:0 auto 1.5rem auto; background:var(--bg-dark-3); color:var(--text-light-2); border-left:4px solid var(--accent-2); border-radius:6px; padding:0.9rem 1.2rem 0.9rem 1.1rem; font-size:1rem; box-shadow:0 2px 8px 0 #0002;">
+  In dieser Entwicklungseinschätzung werden die aktuellen Fähigkeiten und der Entwicklungsstand eines Kindes eingeschätzt. Bitte beantworten Sie die Fragen sorgfältig und objektiv.
+</div>
+<div style="max-width:600px; margin:0 auto 1.2rem auto; text-align:left;">
+  <button onclick="window.location.href='index.htm'" class="back-btn" type="button">&#8592; Zurück</button>
+</div>
+
+
+
+<h2 class="section-heading">Erhebungsdaten</h2>
+
+<form id="survey-form" class="form-section">
+  <div class="form-row">
+    <label>Name<br>
+      <input type="text" id="name" required placeholder="z. B. Anna Müller" />
+    </label>
+    <label>Alter<br>
+      <input type="number" id="age" min="0" max="120" required />
+    </label>
+  </div>
+  <div class="form-row">
+    <label>Pädagog*in<br>
+      <input type="text" id="educator" required />
+    </label>
+    <label>Datum der Erhebung<br>
+      <input type="date" id="date" required />
+    </label>
+  </div>
+</form>
+
+<h3 class="section-subheading">Aussagen bewerten</h3>
+
+<div class="table-wrapper">
+  <table id="rating-table">
+    <colgroup>
+      <col class="aussage" />
+      <col class="rating" /><col class="rating" /><col class="rating" />
+      <col class="rating" /><col class="rating" /><col class="rating" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Aussage</th>
+        <th>irrelevant<br>/ nicht bewertbar</th>
+        <th>trifft<br>nicht zu</th>
+        <th>trifft eher<br>nicht zu</th>
+        <th>trifft<br>zu</th>
+        <th>trifft eher<br>zu</th>
+        <th>trifft voll<br>zu</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="export-container">
+  <button id="clear-btn">Löschen</button>
+  <button id="load-btn">Laden</button>
+  <button id="export-btn">Speichern</button>
+</div>
+
+<input type="file" id="load-file" accept=".csv" style="display: none;" />
+
+<script>
+  // Automatische Auswahl der richtigen JSON-Datei für diese Seite
+  window.fragebogenDatei = 'Fragebogen_Einschaetzung.json';
+</script>
+
+
+
+<main>
+  <div id="main-scroll-inner">
+    <!-- ...bisheriger Main-Inhalt... -->
+  </div>
+</main>
+<div class="custom-scrollbar" id="custom-scrollbar" aria-hidden="true" style="pointer-events: none;">
+  <div class="custom-scrollbar-arrow" id="scrollbar-arrow-up">&#9650;</div>
+  <div class="custom-scrollbar-track" id="custom-scrollbar-track">
+    <div class="custom-scrollbar-thumb" id="custom-scrollbar-thumb"></div>
+  </div>
+  <div class="custom-scrollbar-arrow" id="scrollbar-arrow-down">&#9660;</div>
+</div>

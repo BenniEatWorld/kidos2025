@@ -1,6 +1,12 @@
-<div style="background: var(--accent-2); color: white; padding: 0.75rem 1rem; margin-bottom: 1rem; border-radius: 4px;">
-  📋 Entwicklungsbericht geladen – Umfrage & Bewertung verfügbar
+<h1 class="section-heading" style="margin-top:2rem; margin-bottom:0.5rem; text-align:center; letter-spacing:0.04em;">ENTWICKLUNGSBERICHT</h1>
+
+<div class="info-box" style="max-width:600px; margin:0 auto 1.5rem auto; background:var(--bg-dark-3); color:var(--text-light-2); border-left:4px solid var(--accent-2); border-radius:6px; padding:0.9rem 1.2rem 0.9rem 1.1rem; font-size:1rem; box-shadow:0 2px 8px 0 #0002;">
+  In diesem Entwicklungsbericht werden die individuellen Fortschritte und Kompetenzen eines Kindes dokumentiert. Bitte füllen Sie die Felder aus und bewerten Sie die Aussagen nach bestem Wissen und Gewissen.
 </div>
+<div style="max-width:600px; margin:0 auto 1.2rem auto; text-align:left;">
+  <button onclick="window.location.href='index.htm'" class="back-btn" type="button">&#8592; Zurück</button>
+</div>
+
 
 <h2 class="section-heading">Erhebungsdaten</h2>
 
@@ -54,3 +60,15 @@
 </div>
 
 <input type="file" id="load-file" accept=".csv" style="display: none;" />
+<main>
+  <div id="main-scroll-inner">
+    <!-- ...bisheriger Main-Inhalt... -->
+  </div>
+</main>
+<div class="custom-scrollbar" id="custom-scrollbar" aria-hidden="true" style="pointer-events: none;">
+  <div class="custom-scrollbar-arrow" id="scrollbar-arrow-up">&#9650;</div>
+  <div class="custom-scrollbar-track" id="custom-scrollbar-track">
+    <div class="custom-scrollbar-thumb" id="custom-scrollbar-thumb"></div>
+  </div>
+  <div class="custom-scrollbar-arrow" id="scrollbar-arrow-down">&#9660;</div>
+</div>

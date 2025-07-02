@@ -10,34 +10,98 @@
 
   <header>
     <div class="logo">
-      <img src="logo.png" alt="Logo" />
-    </div>
-    <div class="menu-container">
-      <div class="menu-button" title="Menü">
-        <div></div><div></div><div></div>
-      </div>
-      <div class="menu-content">
-        <a href="#" onclick="loadContent('EB.htm')">Entwicklungsbericht</a>
-        <a href="#" onclick="loadContent('EIN.htm')">Einschätzung</a>
-      </div>
+      <a href="javascript:window.location.href=window.location.href" title="kidos">
+        <img src="gfx/logo_menu.png" alt="Kidos-logo" height="70" style="margin-left: -10px; margin-top: -10px;" />
+      </a>
     </div>
   </header>
 
   <main>
-    <div id="center-content" class="content-area">
-      <h1>Was möchtest du machen?</h1>
-      <div class="button-row">
-        <button onclick="loadContent('EB.htm')" class="square-button">Entwicklungsbericht</button>
-        <button onclick="loadContent('EIN.htm')" class="square-button">Einschätzung</button>
+    <div id="pw-protect" style="max-width:420px;margin:6vh auto 0 auto;padding:2.2em 2em 1.5em 2em;background:var(--bg-dark-3);color:var(--text-light-2);border-radius:10px;box-shadow:0 4px 24px #000a;text-align:center;">
+      <h2 style="margin-top:0;color:var(--accent-2);font-size:1.2em;">Passwort erforderlich</h2>
+      <input id="pw-input" type="password" placeholder="Passwort" style="width:70%;padding:0.6em 1em;margin:1.2em 0 1.2em 0;border-radius:6px;border:1px solid var(--accent-2);background:var(--bg-dark-2);color:var(--text-light-1);font-size:1em;outline:none;" autocomplete="current-password" />
+      <br>
+      <button onclick="checkPassword()" style="padding:0.5em 2.2em;border-radius:6px;background:var(--accent-2);color:#fff;border:none;font-size:1em;cursor:pointer;">Login</button>
+      <div id="pw-error" style="color:#e55;margin-top:1em;min-height:1.5em;font-size:0.98em;"></div>
+    </div>
+    <div id="main-scroll-inner" style="display:none;">
+      <div id="center-content" class="content-area">
+        <h1>Was möchtest du machen?</h1>
+        <div class="button-row">
+          <button onclick="loadContent('EB.htm')" class="square-button">Entwicklungsbericht</button>
+          <button onclick="loadContent('EIN.htm')" class="square-button">Entwicklungs-<br>einschätzung</button>
+        </div>
+        <div class="info-box" style="max-width:600px; margin:0 auto 0.7rem auto; background:var(--bg-dark-3); color:var(--text-light-2); border-left:4px solid var(--accent-2); border-radius:6px; padding:0.45em 1.1em 0.45em 1em; font-size:1rem; box-shadow:0 2px 8px 0 #0002;">
+          <p>Mit <img src="gfx/kidos.png" style="height: 13px; margin: 0px 0px;" > kannst du den Entwicklungsbericht oder die Entwicklungseinschätzung für ein Kind erstellen.</p>
+          <p>Die Daten werden lokal gespeichert und können jederzeit geladen oder gelöscht werden. Die gespeicherten Daten sind nur auf diesem Gerät verfügbar und werden nicht an Dritte weitergegeben.<br>
+            Gehe trotzdem verantwortungswoll mit personenbezogenen Daten um und verwende beispielsweise Pseudonymisierung.</p>
+          <p>Die Ausgabedatei (CSV, Json...) kannst du in eine KI laden und mit deinem eigenen Prompt auswerten lassen.</p>
+        </div>
+        <div style="max-width:600px; margin:0 auto 0.7rem auto; color:var(--bg-light-2); font-size:0.78em; text-align:center;">
+          Diese Anwendung ist Eigentum von Benjamin Geisler und wurde mit ChatGPT und aiHUB erstellt. Jedweder Quellcode, die grafische Gestaltung, zugrundeliegende Konzepte und Ideen sind ebenfalls geschützt. Die Nutzung dieser Anwendung ist (noch) kostenlos und erfolgt auf eigene Verantwortung.
+        </div>
       </div>
     </div>
   </main>
+  <div class="custom-scrollbar" id="custom-scrollbar" aria-hidden="true" style="pointer-events: none;">
+    <div class="custom-scrollbar-arrow" id="scrollbar-arrow-up">&#9650;</div>
+    <div class="custom-scrollbar-track" id="custom-scrollbar-track">
+      <div class="custom-scrollbar-thumb" id="custom-scrollbar-thumb"></div>
+    </div>
+    <div class="custom-scrollbar-arrow" id="scrollbar-arrow-down">&#9660;</div>
+  </div>
+
 
   <footer>
-    © 2025 Benjamin – Alle Rechte vorbehalten
+    <div id="center-content" class="footer-content" style="color: var(--accent-1)">
+      © 2025 Benjamin Geisler – Alle Rechte vorbehalten -
+      <a href="https://www.benjamingeisler.de/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-1);">benjamingeisler.de</a>
+      <span style="display:inline-block;width:1.2em;"></span>
+      <a href="#impressum" onclick="document.getElementById('impressum-modal').style.display='block';return false;" style="color:var(--accent-2);text-decoration:underline;font-size:0.95em;">Impressum</a>
+    </div>
   </footer>
 
+  <!-- Impressum Modal -->
+  <div id="impressum-modal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);backdrop-filter:blur(2px);overflow:auto;">
+    <div style="background:var(--bg-dark-2);color:var(--text-light-1);width:clamp(340px,60vw,700px);margin:8vh auto 0 auto;padding:2.2em 2em 1.5em 2em;border-radius:10px;box-shadow:0 4px 24px #000a;position:relative;max-height:65vh;overflow-y:auto;overflow-x:hidden;">
+      <button onclick="document.getElementById('impressum-modal').style.display='none'" style="position:absolute;top:10px;right:14px;background:none;border:none;color:var(--accent-2);font-size:1.5em;cursor:pointer;">&times;</button>
+      <h2 style="margin-top:0;font-size:1.3em;color:var(--accent-2);">Impressum</h2>
+      <div style="font-size:1em;line-height:1.6;">
+        <strong>Angaben gemäß § 5 TMG</strong><br>
+        Benjamin Geisler<br>
+        c/o teilgabe<br>
+        10317 Berlin<br>
+        Deutschland<br><br>
+        <strong>Kontakt</strong><br>
+        E-Mail: <a href="mailto:info@benjamingeisler.de" style="color:var(--accent-2);">info@benjamingeisler.de</a><br>
+        Web: <a href="https://www.benjamingeisler.de/" target="_blank" rel="noopener" style="color:var(--accent-2);">www.benjamingeisler.de</a><br><br>
+        <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</strong><br>
+        Benjamin Geisler, Anschrift wie oben<br><br>
+        <strong>Haftungsausschluss</strong><br>
+        Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.<br><br>
+        <strong>Urheberrecht</strong><br>
+        Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.<br>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Passwortschutz
+    const PASSWORT = "kidos2025"; // Hier das gewünschte Passwort eintragen
+    function checkPassword() {
+      const input = document.getElementById('pw-input').value;
+      const errorDiv = document.getElementById('pw-error');
+      if (input === PASSWORT) {
+        document.getElementById('pw-protect').style.display = 'none';
+        document.getElementById('main-scroll-inner').style.display = '';
+        errorDiv.textContent = '';
+      } else {
+        errorDiv.textContent = 'Falsches Passwort!';
+      }
+    }
+    document.getElementById('pw-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassword();
+    });
     function loadContent(url) {
       fetch(url)
         .then(response => {
@@ -47,7 +111,16 @@
         .then(html => {
           document.getElementById("center-content").innerHTML = html;
 
+          // Setze die richtige JSON-Datei für jede Seite
           if (url === "EB.htm") {
+            window.fragebogenDatei = 'Fragebogen_Standard.json';
+          } else if (url === "EIN.htm") {
+            window.fragebogenDatei = 'Fragebogen_Einschaetzung.json';
+          } else {
+            window.fragebogenDatei = undefined;
+          }
+
+          if (url === "EB.htm" || url === "EIN.htm") {
             const script = document.createElement("script");
             script.src = "app.js";
             script.defer = true;
@@ -61,7 +134,35 @@
             `<p style="color: red;">Fehler beim Laden: ${err.message}</p>`;
         });
     }
-  </script>
 
+    // Scrollen per gedrückt halten der Custom-Scrollbar-Pfeile
+    let scrollInterval = null;
+    function startScroll(direction) {
+      const main = document.getElementById('main-scroll-inner');
+      if (!main || main.style.display === 'none') return;
+      scrollInterval = setInterval(() => {
+        main.scrollBy({ top: direction * 30, behavior: 'auto' });
+      }, 30);
+    }
+    function stopScroll() {
+      if (scrollInterval) clearInterval(scrollInterval);
+      scrollInterval = null;
+    }
+    const upArrow = document.getElementById('scrollbar-arrow-up');
+    const downArrow = document.getElementById('scrollbar-arrow-down');
+    upArrow.addEventListener('mousedown', () => startScroll(-1));
+    upArrow.addEventListener('touchstart', e => { e.preventDefault(); startScroll(-1); });
+    upArrow.addEventListener('mouseup', stopScroll);
+    upArrow.addEventListener('mouseleave', stopScroll);
+    upArrow.addEventListener('touchend', stopScroll);
+    upArrow.addEventListener('touchcancel', stopScroll);
+    downArrow.addEventListener('mousedown', () => startScroll(1));
+    downArrow.addEventListener('touchstart', e => { e.preventDefault(); startScroll(1); });
+    downArrow.addEventListener('mouseup', stopScroll);
+    downArrow.addEventListener('mouseleave', stopScroll);
+    downArrow.addEventListener('touchend', stopScroll);
+    downArrow.addEventListener('touchcancel', stopScroll);
+  </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
