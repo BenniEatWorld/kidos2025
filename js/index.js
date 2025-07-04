@@ -90,7 +90,7 @@ function createTileMenu() {
   }, 1000);
 }
 
-// Overflow-Handling für das Menü
+// Overflow-Handling für das Menü (vereinfacht und funktional)
 function handleMenuOverflow() {
   const menu = document.getElementById('tile-menu');
   const overflowBtn = document.getElementById('menu-overflow-btn');
@@ -115,23 +115,20 @@ function handleMenuOverflow() {
   dropdown.style.opacity = '0';
   dropdown.style.visibility = 'hidden';
   
-  // Füge alle Links zurück ins Hauptmenü ein
-  allLinks.forEach(link => {
-    if (!menu.contains(link)) {
-      // Erstelle neuen Link im Menü
-      const menuLink = document.createElement('a');
-      menuLink.textContent = link.textContent;
-      menuLink.href = link.href;
-      menuLink.onclick = link.onclick;
-      menu.insertBefore(menuLink, overflowBtn);
-    }
+  // Füge alle Links zurück ins Hauptmenü ein (neuen Link erstellen für saubere Zuordnung)
+  menuLinks.forEach(link => link.remove());
+  allLinks.forEach(originalLink => {
+    const menuLink = document.createElement('a');
+    menuLink.textContent = originalLink.textContent;
+    menuLink.href = originalLink.href;
+    menuLink.onclick = originalLink.onclick;
+    menu.insertBefore(menuLink, overflowBtn);
   });
   
   // Warte auf nächsten Frame für korrekte Measurements
   requestAnimationFrame(() => {
     const menuRect = menu.getBoundingClientRect();
-    const availableWidth = menuRect.width - 40; // Padding berücksichtigen
-    const overflowBtnWidth = 60;
+    const availableWidth = menuRect.width - 80; // Padding + Sicherheitsabstand
     
     const currentLinks = Array.from(menu.querySelectorAll('a'));
     let totalWidth = 0;
@@ -142,10 +139,9 @@ function handleMenuOverflow() {
       const link = currentLinks[i];
       const linkWidth = link.getBoundingClientRect().width + 24; // Gap zwischen Links
       
-      // Wenn es nicht der letzte Link ist, prüfe ob noch Platz für Overflow-Button ist
-      const isLastLink = i === currentLinks.length - 1;
-      const needsOverflowSpace = !isLastLink;
-      const requiredSpace = needsOverflowSpace ? overflowBtnWidth : 0;
+      // Prüfe ob noch Platz für diesen Link ist (plus 60px für Overflow-Button falls nötig)
+      const needsOverflowSpace = i < currentLinks.length - 1;
+      const requiredSpace = needsOverflowSpace ? 60 : 0;
       
       if (totalWidth + linkWidth + requiredSpace <= availableWidth) {
         totalWidth += linkWidth;
@@ -283,19 +279,39 @@ setupMenuResizeListeners();
 
 // Menü wird von tile-loader.js aufgerufen, wenn Tiles geladen sind
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, setting up menu...');
+  
   // Fallback: Versuche Menü nach 2 Sekunden zu erstellen, falls es noch nicht da ist
   setTimeout(() => {
-    if (document.getElementById('tile-menu').children.length === 0) {
+    const menu = document.getElementById('tile-menu');
+    if (menu && menu.querySelectorAll('a').length === 0) {
+      console.log('No menu found after 2 seconds, trying to create...');
       createTileMenu();
+    } else {
+      console.log('Menu already exists with', menu?.querySelectorAll('a').length, 'links');
+      // Trigger overflow handling
+      handleMenuOverflow();
     }
   }, 2000);
   
   // Prüfe Menü-Overflow nach dem vollständigen Laden der Seite
   window.addEventListener('load', () => {
     setTimeout(() => {
+      console.log('Page fully loaded, checking menu overflow...');
       handleMenuOverflow();
     }, 500);
   });
+  
+  // Extra: Trigger nach 5 Sekunden für sicherheit
+  setTimeout(() => {
+    console.log('Final menu overflow check after 5 seconds');
+    const menu = document.getElementById('tile-menu');
+    const links = menu?.querySelectorAll('a');
+    console.log('Final check: menu has', links?.length || 0, 'links');
+    if (links && links.length > 0) {
+      handleMenuOverflow();
+    }
+  }, 5000);
 });
 
 // Debug-Funktionen (können aus der Konsole aufgerufen werden)
