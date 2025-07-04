@@ -56,6 +56,9 @@ function createSimpleDropdownMenu() {
     console.log('Menu elements not found');
     return;
   }
+
+  // Zeige Dropdown-Button sofort (auch ohne Menü-Items)
+  overflowBtn.style.display = 'block';
   
   const tiles = document.querySelectorAll('.tile');
   console.log('Found', tiles.length, 'tiles for menu');
@@ -96,10 +99,8 @@ function createSimpleDropdownMenu() {
     return;
   }
   
-  // Zeige Dropdown-Button (bereits im HTML sichtbar)
-  overflowBtn.style.display = 'block';
-  // Behalte Hamburger-Icon bei
-  overflowBtn.innerHTML = '<span>&#9776;</span>';
+  // Behalte Hamburger-Icon und Menü-Label bei
+  overflowBtn.innerHTML = '<span>&#9776; Menü</span>';
   
   // Erstelle Dropdown-Links
   menuItems.forEach(item => {
@@ -232,8 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const overflowBtn = document.getElementById('menu-overflow-btn');
   if (overflowBtn) {
     overflowBtn.style.display = 'block';
-    overflowBtn.innerHTML = '<span>&#9776;</span>';
-    console.log('Hamburger menu button shown immediately');
+    overflowBtn.innerHTML = '<span>&#9776; Menü</span>';
+    console.log('Hamburger menu button with label shown immediately');
     
     // Setup basic click event auch ohne Inhalte
     overflowBtn.onclick = () => {

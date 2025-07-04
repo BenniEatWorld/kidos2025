@@ -283,35 +283,30 @@
   position: relative;
   color: var(--accent-1);
   opacity: 0.9;
-  padding: 0.6em 1em;
+  padding: 0.3em 1.5em;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: all 0.2s ease;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: normal;
   flex-shrink: 0;
   z-index: 200;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: none;
   background: rgba(255, 255, 255, 0.02);
   user-select: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 36px;
-  gap: 0.5em;
+  height: auto;
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .menu-overflow-btn:hover {
   opacity: 1;
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
-}
-
-.menu-overflow-btn .menu-label {
-  font-size: 0.85em;
-  font-weight: 500;
-  letter-spacing: 0.02em;
 }
 
 /* Menu Dropdown - Zentriertes Design */
@@ -323,11 +318,8 @@
   background: var(--bg-dark-1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  padding: 0.8em 0;
-  min-width: 250px;
-  max-width: 400px;
-  width: 90%;
-  max-width: min(400px, 90vw);
+  padding: 0.6em 0;
+  width: 280px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
@@ -338,7 +330,7 @@
 
 .menu-dropdown a {
   display: block;
-  padding: 0.8em 1.2em;
+  padding: 0.7em 1.5em;
   color: var(--accent-1);
   text-decoration: none;
   opacity: 0.85;
@@ -346,6 +338,7 @@
   border-radius: 0;
   font-weight: 400;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
 }
 
 .menu-dropdown a:last-child {
