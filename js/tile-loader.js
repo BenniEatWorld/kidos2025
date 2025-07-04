@@ -118,6 +118,12 @@
           if (typeof createTileMenu === 'function') {
             createTileMenu();
           }
+          // Overflow-Handling nach Menü-Erstellung
+          setTimeout(() => {
+            if (typeof handleMenuOverflow === 'function') {
+              handleMenuOverflow();
+            }
+          }, 300);
         }, 200);
     });
   }

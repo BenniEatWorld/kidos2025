@@ -16,8 +16,14 @@
         </div>
         <button class="start-login-btn" onclick="showLogin()">kidos2025 Login &rarr;</button>
       </div>
-      <nav id="tile-menu" class="header-menu"></nav>
+      <nav id="tile-menu" class="header-menu">
+        <div class="menu-overflow-btn" id="menu-overflow-btn" style="display: none;">
+          <span>⋯</span>
+        </div>
+      </nav>
     </header>
+    <!-- Dropdown außerhalb des Headers für bessere z-index Kontrolle -->
+    <div class="menu-dropdown" id="menu-dropdown"></div>
     <main class="main-content">
       <div id="main-scroll-inner" class="custom-scrollbar-area main-scroll-container">
         <section class="tile-section">
