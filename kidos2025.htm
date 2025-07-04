@@ -5,36 +5,13 @@
   <title>kidos 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="benni.css" />
-  <style>
-    .start-login-btn {
-      background: var(--bg-dark-2);
-      color: var(--accent-2);
-      border: 1px solid var(--accent-2);
-      border-radius: 6px;
-      font-size: 1em;
-      padding: 0.35em 1.2em;
-      cursor: pointer;
-      box-shadow: none;
-      transition: background 0.18s, color 0.18s, border 0.18s;
-      margin-top: 0;
-      min-width: 110px;
-      white-space: nowrap;
-      position: absolute;
-      right: 1em;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .start-login-btn:hover, .start-login-btn:focus {
-      background: #2d3750;
-      color: var(--accent-2);
-      border: 1px solid var(--accent-1);
-    }
-  </style>
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="kidos2025.css" />
 </head>
 <body>
-  <header style="display:flex;align-items:center;justify-content:center;padding:0;background:var(--bg-dark-1);box-shadow:0 4px 18px #0006;z-index:10;height:70px;position:relative;">
-    <div class="logo" style="display:flex;align-items:center;justify-content:center;width:100%;">
-      <img src="gfx/logo_menu.png" alt="Kidos-logo" height="54" style="margin-bottom:0;display:block;margin-left:auto;margin-right:auto;" />
+  <header class="main-header">
+    <div class="logo">
+      <img src="gfx/logo_menu.png" alt="Kidos-logo" height="54" />
     </div>
     <button class="start-login-btn" onclick="window.location.href='index.htm'">Ausloggen &larr;</button>
   </header>
@@ -62,121 +39,12 @@
       © 2025 Benjamin Geisler – Alle Rechte vorbehalten -
       <a href="https://www.benjamingeisler.de/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-1);">benjamingeisler.de</a>
       <span style="display:inline-block;width:1.2em;"></span>
-      <a href="#impressum" onclick="document.getElementById('impressum-modal').style.display='block';return false;" style="color:var(--accent-2);text-decoration:underline;font-size:0.95em;">Impressum</a>
+      <a href="#impressum" onclick="showImpressum();return false;" style="color:var(--accent-2);text-decoration:underline;font-size:0.95em;">Impressum</a>
     </div>
   </footer>
-  <!-- Impressum Modal -->
-  <div id="impressum-modal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);backdrop-filter:blur(2px);overflow:auto;">
-    <div style="background:var(--bg-dark-2);color:var(--text-light-1);width:clamp(340px,60vw,700px);margin:8vh auto 0 auto;padding:2.2em 2em 1.5em 2em;border-radius:10px;box-shadow:0 4px 24px #000a;position:relative;max-height:65vh;overflow-y:auto;overflow-x:hidden;">
-      <button onclick="document.getElementById('impressum-modal').style.display='none'" style="position:sticky;top:2px;right:2px;float:right;background:none;border:none;color:var(--accent-2);font-size:1.7em;cursor:pointer;z-index:10;padding:0.1em 0.4em 0.1em 0.1em;">&times;</button>
-      <h2 style="margin-top:0;font-size:1.3em;color:var(--accent-2);">Impressum</h2>
-      <div style="font-size:1em;line-height:1.6;">
-        <span style="display:block;font-weight:bold;font-size:1.08em;color:var(--accent-2);margin-bottom:0.2em;letter-spacing:0.01em;">Angaben gemäß § 5 TMG</span>
-        Benjamin Geisler<br>
-        c/o Teilhabe durch Teilgabe<br>
-        Skandinavische Straße 15<br>
-        10317 Berlin<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Kontakt:</span><br>
-        E-Mail: kontakt@benjamingeisler.de<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</span><br>
-        Benjamin Geisler, Anschrift wie oben<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Streitschlichtung:</span><br>
-        Plattform der Europäischen Kommission zur Online-Streitbeilegung (OS) für Verbraucher: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-1);">https://ec.europa.eu/consumers/odr/</a>. Ich bin nicht bereit und nicht verpflichtet an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Haftung für Inhalte:</span><br>
-        Als Diensteanbieter bin ich gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werde ich diese Inhalte umgehend entfernen.<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Haftung für Links:</span><br>
-        Meine Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte ich keinen Einfluss haben. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Links umgehend entfernen.<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Mögliche Rechteverletzungen:</span><br>
-        Sollte der Inhalt oder die Aufmachung dieser Seiten Rechte Dritter oder gesetzliche Bestimmungen verletzen, so bitte ich um eine entsprechende Nachricht ohne Kostennote. Ich werden die zu Recht beanstandeten Passagen bzw. Inhalte unverzüglich entfernen, ohne dass von Seiten der Beschwerdeführenden die Einschaltung eines Rechtsbeistandes erforderlich ist. Ohne vorherige Kontaktaufnahme ausgelöste Kosten, etwa durch Abmahnungen, werde ich vollumfänglich zurückweisen.<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Urheberrecht:</span><br>
-        Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitte ich um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Inhalte umgehend entfernen.<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Widerspruch Werbe-Mails:</span><br>
-        Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Der Betreiber der Seiten behält sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.<br>
-        <i>Quelle:</i> <a href="https://www.e-recht24.de/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-1);">eRecht24</a>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Umsetzung der Website:</span><br>
-        Umgesetzt und gestaltet wurde die Website von Benjamin Geisler. Technische Fehler oder sonstigen Feedback zur Website bitte an kontakt@benjamingeisler.de melden.<br>
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Nutzung der Kommentarfunktion:</span><br>
-        Das Benutzen der Kommentarfunktion zu kommerziellen oder werblichen Zwecken ist untersagt. Außerdem behalte ich mir vor Kommentare nach eigenem Ermessen zu löschen.<br>          
-        <br>
-        <span style="display:block;font-weight:bold;font-size:1.05em;color:var(--accent-1);margin-top:0.7em;margin-bottom:0.1em;">Salvatorische Klausel:</span><br>
-        Sollte eine Bestimmung dieser Nutzungsbedingungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Anstelle der unwirksamen Bestimmung tritt eine Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.<br>
-        <br>
-        <br>
-        <i>Stand (letzte Aktualisierung): 02.07.2025</i>
-      </div>
-    </div>
-  </div>
-  <script>
-    function loadContent(url) {
-      fetch(url)
-        .then(response => {
-          if (!response.ok) throw new Error("Ladevorgang fehlgeschlagen");
-          return response.text();
-        })
-        .then(html => {
-          document.getElementById("center-content").innerHTML = html;
-
-          // Setze die richtige JSON-Datei für jede Seite
-          if (url === "EB.htm") {
-            window.fragebogenDatei = 'json/FRA_STD.json';
-          } else if (url === "EIN.htm") {
-            window.fragebogenDatei = 'json/EIN_STD.json';
-          } else {
-            window.fragebogenDatei = undefined;
-          }
-
-          if (url === "EB.htm" || url === "EIN.htm") {
-            const script = document.createElement("script");
-            script.src = "app.js";
-            script.defer = true;
-            document.body.appendChild(script);
-          }
-
-          window.scrollTo(0, 0);
-        })
-        .catch(err => {
-          document.getElementById("center-content").innerHTML =
-            `<p style="color: red;">Fehler beim Laden: ${err.message}</p>`;
-        });
-    }
-    // Scrollen per gedrückt halten der Custom-Scrollbar-Pfeile
-    let scrollInterval = null;
-    function startScroll(direction) {
-      const main = document.getElementById('main-scroll-inner');
-      if (!main || main.style.display === 'none') return;
-      scrollInterval = setInterval(() => {
-        main.scrollBy({ top: direction * 30, behavior: 'auto' });
-      }, 30);
-    }
-    function stopScroll() {
-      if (scrollInterval) clearInterval(scrollInterval);
-      scrollInterval = null;
-    }
-    const upArrow = document.getElementById('scrollbar-arrow-up');
-    const downArrow = document.getElementById('scrollbar-arrow-down');
-    upArrow.addEventListener('mousedown', () => startScroll(-1));
-    upArrow.addEventListener('touchstart', e => { e.preventDefault(); startScroll(-1); });
-    upArrow.addEventListener('mouseup', stopScroll);
-    upArrow.addEventListener('mouseleave', stopScroll);
-    upArrow.addEventListener('touchend', stopScroll);
-    upArrow.addEventListener('touchcancel', stopScroll);
-    downArrow.addEventListener('mousedown', () => startScroll(1));
-    downArrow.addEventListener('touchstart', e => { e.preventDefault(); startScroll(1); });
-    downArrow.addEventListener('mouseup', stopScroll);
-    downArrow.addEventListener('mouseleave', stopScroll);
-    downArrow.addEventListener('touchend', stopScroll);
-    downArrow.addEventListener('touchcancel', stopScroll);
-  </script>
-  <script src="app.js" defer></script>
-</body>
+    <script src="js/impressum.js"></script>
+    <script src="js/custom-scrollbar.js"></script>
+    <script src="js/kidos2025.js"></script>
+    <script src="app.js" defer></script>
+  </body>
 </html>

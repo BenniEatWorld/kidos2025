@@ -1,0 +1,196 @@
+/* Gemeinsame Komponenten für alle Seiten */
+
+/* Button-Styles */
+.start-login-btn {
+  background: var(--bg-dark-2);
+  color: var(--accent-2);
+  border: 1px solid var(--accent-2);
+  border-radius: 6px;
+  font-size: 1em;
+  padding: 0.35em 1.2em;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+  margin-top: 0;
+  min-width: 110px;
+  white-space: nowrap;
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.start-login-btn:hover, 
+.start-login-btn:focus {
+  background: #2d3750;
+  color: var(--accent-2);
+  border: 1px solid var(--accent-1);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  position: fixed;
+  right: 0;
+  width: 20px;
+  background: var(--bg-dark-2);
+  border-left: 1px solid var(--accent-2);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.custom-scrollbar-arrow {
+  height: 20px;
+  background: var(--bg-dark-1);
+  color: var(--accent-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7em;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.custom-scrollbar-arrow:hover {
+  background: var(--accent-2);
+  color: var(--bg-dark-1);
+}
+
+.custom-scrollbar-track {
+  flex: 1;
+  position: relative;
+  background: var(--bg-dark-2);
+}
+
+.custom-scrollbar-thumb {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--accent-1);
+  border-radius: 2px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.custom-scrollbar-thumb:hover {
+  opacity: 1;
+}
+
+/* Footer */
+.footer-content {
+  color: var(--accent-1);
+}
+
+.footer-content a {
+  color: var(--accent-1);
+}
+
+/* Impressum Modal */
+.impressum-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(2px);
+  overflow: auto;
+}
+
+.impressum-modal-content {
+  background: var(--bg-dark-2);
+  color: var(--text-light-1);
+  width: clamp(340px,60vw,700px);
+  margin: 8vh auto 0 auto;
+  padding: 2.2em 2em 1.5em 2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px #000a;
+  position: relative;
+  max-height: 65vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.impressum-close-btn {
+  position: sticky;
+  top: 2px;
+  right: 2px;
+  float: right;
+  background: none;
+  border: none;
+  color: var(--accent-2);
+  font-size: 1.7em;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0.1em 0.4em 0.1em 0.1em;
+}
+
+.impressum-heading {
+  margin-top: 0;
+  font-size: 1.3em;
+  color: var(--accent-2);
+}
+
+.impressum-text {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.impressum-section {
+  display: block;
+  font-weight: bold;
+  font-size: 1.08em;
+  color: var(--accent-2);
+  margin-bottom: 0.2em;
+  letter-spacing: 0.01em;
+}
+
+.impressum-subsection {
+  display: block;
+  font-weight: bold;
+  font-size: 1.05em;
+  color: var(--accent-1);
+  margin-top: 0.7em;
+  margin-bottom: 0.1em;
+}
+
+/* Header */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: var(--bg-dark-1);
+  box-shadow: 0 4px 18px #0006;
+  z-index: 10;
+  height: 70px;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo img {
+  margin-bottom: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Main Layout */
+.main-content {
+  position: relative;
+}
+
+.main-scroll-inner {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}

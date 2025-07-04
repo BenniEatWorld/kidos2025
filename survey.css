@@ -1,0 +1,78 @@
+/* Survey Page Styles - Gemeinsame Styles für EB.htm und EIN.htm */
+
+/* Page Header */
+.survey-header {
+  position: relative;
+}
+
+.survey-title {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.survey-back-btn {
+  position: fixed;
+  top: 1.2rem;
+  right: 10.75em;
+  transform: none;
+  min-width: 110px;
+  z-index: 1001;
+}
+
+/* Info Box */
+.survey-info-box {
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  background: var(--bg-dark-3);
+  color: var(--text-light-2);
+  border-left: 4px solid var(--accent-2);
+  border-radius: 6px;
+  padding: 0.9rem 1.2rem 0.9rem 1.1rem;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 #0002;
+}
+
+/* Survey Main Content */
+.survey-main {
+  position: relative;
+}
+
+.survey-logout-container {
+  position: absolute;
+  top: 0.5em;
+  right: 1.2em;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5em;
+}
+
+/* Header Styles for Survey Pages */
+.survey-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: var(--bg-dark-1);
+  box-shadow: 0 4px 18px #0006;
+  z-index: 10;
+  height: 70px;
+  position: relative;
+}
+
+.survey-page-header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.survey-page-header .logo img {
+  margin-bottom: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
