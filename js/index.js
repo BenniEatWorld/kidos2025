@@ -170,17 +170,15 @@ function handleMenuOverflow() {
         link.remove();
       }
       
-      // Positioniere Dropdown
+      // Positioniere Dropdown direkt unter dem Button
       requestAnimationFrame(() => {
         const btnRect = overflowBtn.getBoundingClientRect();
-        dropdown.style.top = (btnRect.bottom + 8) + 'px';
+        dropdown.style.top = (btnRect.bottom + 2) + 'px'; // Nur 2px Gap
         dropdown.style.right = (window.innerWidth - btnRect.right) + 'px';
       });
       
-      // Event-Listener für Hover
-      overflowBtn.onmouseenter = showDropdown;
-      overflowBtn.onmouseleave = hideDropdownDelayed;
-      dropdown.onmouseleave = hideDropdown;
+      // Event-Listener für Hover - komplett neue Implementierung
+      setupDropdownEvents(overflowBtn, dropdown);
     }
   });
 }
@@ -188,27 +186,42 @@ function handleMenuOverflow() {
 // Dropdown anzeigen
 function showDropdown() {
   const dropdown = document.getElementById('menu-dropdown');
-  dropdown.style.opacity = '1';
-  dropdown.style.visibility = 'visible';
-  dropdown.style.transform = 'translateY(0)';
+  if (dropdown) {
+    dropdown.style.opacity = '1';
+    dropdown.style.visibility = 'visible';
+    dropdown.style.transform = 'translateY(0)';
+  }
 }
 
 // Dropdown mit Verzögerung verstecken
 function hideDropdownDelayed() {
-  setTimeout(() => {
+  clearTimeout(dropdownHideTimeout);
+  dropdownHideTimeout = setTimeout(() => {
     const dropdown = document.getElementById('menu-dropdown');
-    if (!dropdown.matches(':hover')) {
-      hideDropdown();
+    const overflowBtn = document.getElementById('menu-overflow-btn');
+    
+    // Prüfe ob Maus noch über Button oder Dropdown ist
+    if (dropdown && overflowBtn) {
+      const isOverDropdown = dropdown.matches(':hover');
+      const isOverButton = overflowBtn.matches(':hover');
+      
+      if (!isOverDropdown && !isOverButton) {
+        hideDropdown();
+      }
     }
-  }, 100);
+  }, 200); // Längere Verzögerung für bessere UX
 }
 
-// Dropdown verstecken
+// Dropdown sofort verstecken
 function hideDropdown() {
+  clearTimeout(dropdownHideTimeout);
+  
   const dropdown = document.getElementById('menu-dropdown');
-  dropdown.style.opacity = '0';
-  dropdown.style.visibility = 'hidden';
-  dropdown.style.transform = 'translateY(-10px)';
+  if (dropdown) {
+    dropdown.style.opacity = '0';
+    dropdown.style.visibility = 'hidden';
+    dropdown.style.transform = 'translateY(-10px)';
+  }
 }
 
 // Event-Listener für alle Arten von Größenänderungen
@@ -385,3 +398,47 @@ window.createTestMenu = function() {
     handleMenuOverflow();
   }, 100);
 };
+
+// Dropdown Event-Setup (verhindert Event-Listener-Anhäufung)
+let currentDropdownListeners = [];
+
+function setupDropdownEvents(overflowBtn, dropdown) {
+  // Entferne alle bestehenden Event-Listener
+  currentDropdownListeners.forEach(({ element, event, handler }) => {
+    element.removeEventListener(event, handler);
+  });
+  currentDropdownListeners = [];
+  
+  // Definiere Event-Handler-Funktionen
+  const showHandler = () => {
+    clearTimeout(dropdownHideTimeout);
+    showDropdown();
+  };
+  
+  const hideHandler = () => {
+    hideDropdownDelayed();
+  };
+  
+  // Füge neue Event-Listener hinzu und tracke sie
+  const addListener = (element, event, handler) => {
+    element.addEventListener(event, handler);
+    currentDropdownListeners.push({ element, event, handler });
+  };
+  
+  addListener(overflowBtn, 'mouseenter', showHandler);
+  addListener(overflowBtn, 'mouseleave', hideHandler);
+  addListener(dropdown, 'mouseenter', showHandler);
+  addListener(dropdown, 'mouseleave', hideHandler);
+  
+  // Zusätzlich: Click außerhalb versteckt Dropdown
+  const documentClickHandler = (e) => {
+    if (!overflowBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      hideDropdown();
+    }
+  };
+  
+  addListener(document, 'click', documentClickHandler);
+}
+
+// Dropdown-Timing-Variablen
+let dropdownHideTimeout = null;
