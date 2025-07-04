@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -10,6 +9,12 @@
   <link rel="stylesheet" href="survey.css" />
 </head>
 <body>
+  <header class="survey-page-header">
+    <div class="logo">
+      <img src="gfx/logo_menu.png" alt="Kidos-logo" height="54" />
+    </div>
+  </header>
+
   <main class="survey-main">
     <div class="survey-logout-container">
       <button class="start-login-btn" onclick="window.location.href='index.htm'" type="button">Ausloggen &larr;</button>
@@ -24,62 +29,58 @@
         In dieser Entwicklungseinschätzung werden die aktuellen Fähigkeiten und der Entwicklungsstand eines Kindes eingeschätzt. Bitte beantworten Sie die Fragen sorgfältig und objektiv.
       </div>
 
+      <h2 class="section-heading">Erhebungsdaten</h2>
 
+      <form id="survey-form" class="form-section">
+        <div class="form-row">
+          <label>Name<br>
+            <input type="text" id="name" required placeholder="z. B. Anna Müller" />
+          </label>
+          <label>Alter<br>
+            <input type="number" id="age" min="0" max="120" required />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Pädagog*in<br>
+            <input type="text" id="educator" required />
+          </label>
+          <label>Datum der Erhebung<br>
+            <input type="date" id="date" required />
+          </label>
+        </div>
+      </form>
 
+      <h3 class="section-subheading">Aussagen bewerten</h3>
 
+      <div class="table-wrapper">
+        <table id="rating-table">
+          <colgroup>
+            <col class="aussage" />
+            <col class="rating" /><col class="rating" /><col class="rating" />
+            <col class="rating" /><col class="rating" /><col class="rating" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Aussage</th>
+              <th>irrelevant<br>/ nicht bewertbar</th>
+              <th>trifft<br>nicht zu</th>
+              <th>trifft eher<br>nicht zu</th>
+              <th>trifft<br>zu</th>
+              <th>trifft eher<br>zu</th>
+              <th>trifft voll<br>zu</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
-<h2 class="section-heading">Erhebungsdaten</h2>
+      <div class="export-container">
+        <button id="clear-btn">Löschen</button>
+        <button id="load-btn">Laden</button>
+        <button id="export-btn">Speichern</button>
+      </div>
 
-<form id="survey-form" class="form-section">
-  <div class="form-row">
-    <label>Name<br>
-      <input type="text" id="name" required placeholder="z. B. Anna Müller" />
-    </label>
-    <label>Alter<br>
-      <input type="number" id="age" min="0" max="120" required />
-    </label>
-  </div>
-  <div class="form-row">
-    <label>Pädagog*in<br>
-      <input type="text" id="educator" required />
-    </label>
-    <label>Datum der Erhebung<br>
-      <input type="date" id="date" required />
-    </label>
-  </div>
-</form>
-
-<h3 class="section-subheading">Aussagen bewerten</h3>
-
-<div class="table-wrapper">
-  <table id="rating-table">
-    <colgroup>
-      <col class="aussage" />
-      <col class="rating" /><col class="rating" /><col class="rating" />
-      <col class="rating" /><col class="rating" /><col class="rating" />
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Aussage</th>
-        <th>irrelevant<br>/ nicht bewertbar</th>
-        <th>trifft<br>nicht zu</th>
-        <th>trifft eher<br>nicht zu</th>
-        <th>trifft<br>zu</th>
-        <th>trifft eher<br>zu</th>
-        <th>trifft voll<br>zu</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</div>
-
-<div class="export-container">
-  <button id="clear-btn">Löschen</button>
-  <button id="load-btn">Laden</button>
-  <button id="export-btn">Speichern</button>
-</div>
-
-<      <input type="file" id="load-file" accept=".csv" style="display: none;" />
+      <input type="file" id="load-file" accept=".csv" class="hidden-file-input" />
     </div>
   </main>
 

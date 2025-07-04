@@ -77,13 +77,40 @@
   opacity: 1;
 }
 
-/* Footer */
+/* Footer Styles - Shared across pages */
+.start-footer {
+  background: var(--bg-dark-1);
+  color: var(--accent-1);
+  height: 30px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8pt;
+  padding: 0;
+}
+
 .footer-content {
   color: var(--accent-1);
 }
 
 .footer-content a {
   color: var(--accent-1);
+}
+
+.footer-spacer {
+  display: inline-block;
+  width: 1.2em;
+}
+
+.footer-impressum-link {
+  color: var(--accent-2);
+  text-decoration: underline;
+  font-size: 0.95em;
 }
 
 /* Impressum Modal */

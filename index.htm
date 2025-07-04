@@ -5,6 +5,7 @@
   <title>kidos 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="benni.css" />
+  <link rel="stylesheet" href="components.css" />
   <link rel="stylesheet" href="index.css" />
 </head>
   <body>
@@ -61,15 +62,15 @@
         <div id="start-login-modal" class="login-modal-bg">
           <div class="login-modal-box">
             <button onclick="closeLogin()" class="close-btn">&times;</button>
-            <h2 style="margin-top:0;color:var(--accent-2);font-size:1.2em;">Login</h2>
-            <p style="color:var(--text-light-2);font-size:1em;">Bitte gib das Passwort ein, um die Anwendung zu nutzen.</p>
+            <h2 class="login-modal-title">Login</h2>
+            <p class="login-modal-text">Bitte gib das Passwort ein, um die Anwendung zu nutzen.</p>
             <input id="pw-input" type="password" placeholder="Passwort" autocomplete="current-password" onkeydown="if(event.key==='Enter'){checkPassword();}" />
-            <div id="pw-error" style="color:#e55;margin-top:1em;min-height:1.5em;font-size:0.98em;"></div>
-            <button onclick="checkPassword()" style="width:100%;margin-top:1.5em;">Login</button>
+            <div id="pw-error" class="login-error"></div>
+            <button onclick="checkPassword()" class="login-submit-btn">Login</button>
           </div>
         </div>
       </div>
-      <div class="custom-scrollbar" id="custom-scrollbar" aria-hidden="true" style="pointer-events: none;">
+      <div class="custom-scrollbar" id="custom-scrollbar" aria-hidden="true">
         <div class="custom-scrollbar-arrow" id="scrollbar-arrow-up">&#9650;</div>
         <div class="custom-scrollbar-track" id="custom-scrollbar-track">
           <div class="custom-scrollbar-thumb" id="custom-scrollbar-thumb"></div>
@@ -77,17 +78,16 @@
         <div class="custom-scrollbar-arrow" id="scrollbar-arrow-down">&#9660;</div>
       </div>
     </main>
-    <footer class="start-footer" style="background:var(--bg-dark-1);color:var(--accent-1);height:30px;position:fixed;bottom:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:center;font-size:8pt;padding:0;">
-      <div id="center-content" class="footer-content" style="color: var(--accent-1);">
+    <footer class="start-footer">
+      <div id="center-content" class="footer-content">
         © 2025 Benjamin Geisler – Alle Rechte vorbehalten -
-        <a href="https://www.benjamingeisler.de/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-1);">benjamingeisler.de</a>
-        <span style="display:inline-block;width:1.2em;"></span>
-        <a href="#impressum" onclick="loadImpressum();return false;" style="color:var(--accent-2);text-decoration:underline;font-size:0.95em;">Impressum</a>
+        <a href="https://www.benjamingeisler.de/" target="_blank" rel="noopener noreferrer">benjamingeisler.de</a>
+        <span class="footer-spacer"></span>
+        <a href="#impressum" onclick="loadImpressum();return false;" class="footer-impressum-link">Impressum</a>
       </div>
     </footer>
     <!-- Impressum Modal Container (will be loaded dynamically) -->
     <div id="impressum-modal"></div>
-    <script src="app.js"></script>
     <script src="js/index.js"></script>
     <script src="js/tile-backgrounds.js"></script>
     <script src="js/tile-loader.js"></script>

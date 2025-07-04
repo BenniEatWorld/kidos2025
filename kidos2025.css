@@ -61,6 +61,33 @@ footer {
   padding: 0;
 }
 
+/* Custom Scrollbar Positioning for kidos2025 */
+.kidos-custom-scrollbar {
+  pointer-events: none;
+  top: 70px;
+  bottom: 30px;
+}
+
+/* Footer Content for kidos2025 */
+.kidos-footer-content {
+  color: var(--accent-1);
+}
+
+.kidos-footer-content a {
+  color: var(--accent-1);
+}
+
+.kidos-footer-spacer {
+  display: inline-block;
+  width: 1.2em;
+}
+
+.kidos-footer-impressum-link {
+  color: var(--accent-2);
+  text-decoration: underline;
+  font-size: 0.95em;
+}
+
 @media (max-width: 600px) {
   .button-row {
     flex-direction: column;

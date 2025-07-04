@@ -76,3 +76,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Hidden File Input */
+.hidden-file-input {
+  display: none;
+}
