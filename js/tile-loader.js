@@ -81,6 +81,9 @@
     }
     
     // Für jede Datei: Inhalt laden und in die Kachel einfügen
+    let loadedCount = 0;
+    const totalFiles = files.length;
+    
     files.forEach((file, i) => {
       fetch(file)
         .then(r => r.ok ? r.text() : '')
@@ -111,20 +114,37 @@
           
           const el = document.getElementById('tile-content-' + (i + 1));
           if (el) el.innerHTML = html;
-        });
-        
-        // Menü nach dem Laden aller Tiles erstellen
-        setTimeout(() => {
-          if (typeof createTileMenu === 'function') {
-            createTileMenu();
+          
+          // Zähle die geladenen Tiles
+          loadedCount++;
+          
+          // Erstelle das Menü nur einmal, wenn alle Tiles geladen sind
+          if (loadedCount === totalFiles) {
+            console.log('All tiles loaded, creating menu for', totalFiles, 'tiles');
+            setTimeout(() => {
+              if (typeof createSimpleDropdownMenu === 'function') {
+                createSimpleDropdownMenu();
+              } else if (typeof createTileMenu === 'function') {
+                createTileMenu();
+              }
+            }, 100);
           }
-          // Overflow-Handling nach Menü-Erstellung
-          setTimeout(() => {
-            if (typeof handleMenuOverflow === 'function') {
-              handleMenuOverflow();
-            }
-          }, 300);
-        }, 200);
+        })
+        .catch(err => {
+          console.log('Error loading tile', i + 1, ':', err);
+          loadedCount++;
+          
+          // Auch bei Fehlern das Menü erstellen, wenn alle Versuche durch sind
+          if (loadedCount === totalFiles) {
+            setTimeout(() => {
+              if (typeof createSimpleDropdownMenu === 'function') {
+                createSimpleDropdownMenu();
+              } else if (typeof createTileMenu === 'function') {
+                createTileMenu();
+              }
+            }, 100);
+          }
+        });
     });
   }
   

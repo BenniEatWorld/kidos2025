@@ -41,6 +41,8 @@ let menuCreated = false;
 
 // Erstelle einfaches Dropdown-Menü
 function createSimpleDropdownMenu() {
+  console.log('=== createSimpleDropdownMenu called ===');
+  
   if (menuCreated) {
     console.log('Menu already created');
     return;
@@ -57,6 +59,12 @@ function createSimpleDropdownMenu() {
   
   const tiles = document.querySelectorAll('.tile');
   console.log('Found', tiles.length, 'tiles for menu');
+  
+  // Prüfe jede Tile auf h2-Inhalte
+  tiles.forEach((tile, i) => {
+    const h2 = tile.querySelector('h2');
+    console.log(`Tile ${i + 1}:`, h2 ? `"${h2.textContent.trim()}"` : 'no h2 found');
+  });
   
   if (tiles.length === 0) {
     console.log('No tiles found yet');
@@ -88,9 +96,10 @@ function createSimpleDropdownMenu() {
     return;
   }
   
-  // Zeige Dropdown-Button
+  // Zeige Dropdown-Button (bereits im HTML sichtbar)
   overflowBtn.style.display = 'block';
-  overflowBtn.innerHTML = '<span>Navigation ▼</span>';
+  // Behalte Hamburger-Icon bei
+  overflowBtn.innerHTML = '<span>&#9776;</span>';
   
   // Erstelle Dropdown-Links
   menuItems.forEach(item => {
@@ -132,7 +141,7 @@ function showDropdown() {
   const dropdown = document.getElementById('menu-dropdown');
   dropdown.style.opacity = '1';
   dropdown.style.visibility = 'visible';
-  dropdown.style.transform = 'translateY(0)';
+  dropdown.style.transform = 'translateX(-50%) translateY(0)';
 }
 
 // Dropdown verstecken
@@ -140,7 +149,7 @@ function hideDropdown() {
   const dropdown = document.getElementById('menu-dropdown');
   dropdown.style.opacity = '0';
   dropdown.style.visibility = 'hidden';
-  dropdown.style.transform = 'translateY(-10px)';
+  dropdown.style.transform = 'translateX(-50%) translateY(-10px)';
 }
 
 // Dropdown-Position aktualisieren
@@ -148,10 +157,11 @@ function positionDropdown() {
   const overflowBtn = document.getElementById('menu-overflow-btn');
   const dropdown = document.getElementById('menu-dropdown');
   
+  // Positionierung wird über CSS gehandhabt (zentriert)
   if (overflowBtn && dropdown) {
     const btnRect = overflowBtn.getBoundingClientRect();
     dropdown.style.top = (btnRect.bottom + 5) + 'px';
-    dropdown.style.right = (window.innerWidth - btnRect.right) + 'px';
+    // left und transform werden über CSS gesetzt für Zentrierung
   }
 }
 
@@ -214,19 +224,36 @@ window.addEventListener('resize', () => {
   positionDropdown();
 });
 
-// Initialisierung
+// Sofortige Menü-Initialisierung
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded - simple dropdown menu system');
+  console.log('DOM loaded - initializing menu immediately');
   
-  // Versuche Menü nach 1 Sekunde zu erstellen
+  // Zeige Hamburger-Button sofort an
+  const overflowBtn = document.getElementById('menu-overflow-btn');
+  if (overflowBtn) {
+    overflowBtn.style.display = 'block';
+    overflowBtn.innerHTML = '<span>&#9776;</span>';
+    console.log('Hamburger menu button shown immediately');
+    
+    // Setup basic click event auch ohne Inhalte
+    overflowBtn.onclick = () => {
+      const dropdown = document.getElementById('menu-dropdown');
+      if (dropdown.children.length === 0) {
+        dropdown.innerHTML = '<div style="padding: 1em; color: var(--accent-1); opacity: 0.7;">Menü wird geladen...</div>';
+      }
+      toggleDropdown();
+    };
+  }
+  
+  // Versuche Menü zu erstellen
   setTimeout(() => {
     createSimpleDropdownMenu();
-  }, 1000);
+  }, 100);
   
-  // Fallback nach 3 Sekunden
+  // Fallback nach längerem Warten
   setTimeout(() => {
     if (!menuCreated) {
-      console.log('Fallback: trying to create menu again');
+      console.log('Fallback menu creation after 3 seconds');
       createSimpleDropdownMenu();
     }
   }, 3000);

@@ -283,7 +283,7 @@
   position: relative;
   color: var(--accent-1);
   opacity: 0.9;
-  padding: 0.6em 0.8em;
+  padding: 0.6em 1em;
   cursor: pointer;
   border-radius: 6px;
   transition: all 0.2s ease;
@@ -297,8 +297,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
   min-height: 36px;
+  gap: 0.5em;
 }
 
 .menu-overflow-btn:hover {
@@ -308,21 +308,29 @@
   transform: translateY(-1px);
 }
 
-/* Menu Dropdown - Einfaches Design */
+.menu-overflow-btn .menu-label {
+  font-size: 0.85em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Menu Dropdown - Zentriertes Design */
 .menu-dropdown {
   position: fixed;
   top: 120px;
-  right: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
   background: var(--bg-dark-1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 0.8em 0;
-  min-width: 200px;
-  max-width: 300px;
+  min-width: 250px;
+  max-width: 400px;
+  width: 90%;
+  max-width: min(400px, 90vw);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
   transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
   z-index: 9999;
   margin-top: 0px;
