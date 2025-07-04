@@ -40,41 +40,40 @@ function createTileMenu() {
   const menu = document.getElementById('tile-menu');
   if (!menu) return;
   
-  // Warte, bis die Kachelüberschriften geladen sind
-  setTimeout(() => {
-    const tiles = document.querySelectorAll('.tile');
-    menu.innerHTML = '';
-    
-    tiles.forEach((tile, i) => {
-      const h2 = tile.querySelector('h2');
-      if (h2) {
-        // Kachel bekommt eine ID, falls nicht vorhanden
-        tile.id = tile.id || 'tile-scroll-' + (i + 1);
-        
-        const a = document.createElement('a');
-        a.textContent = h2.textContent;
-        a.href = '#' + tile.id;
-        a.style.cssText = 'color:var(--accent-1);text-decoration:none;opacity:0.7;padding:0 0.2em;transition:opacity 0.18s;cursor:pointer;font-weight:400;';
-        
-        a.onmouseenter = () => a.style.opacity = '1';
-        a.onmouseleave = () => a.style.opacity = '0.7';
-        
-        a.onclick = (e) => {
-          e.preventDefault();
-          const main = document.getElementById('main-scroll-inner');
-          const rect = tile.getBoundingClientRect();
-          const mainRect = main.getBoundingClientRect();
-          // Scroll-Offset: Headerhöhe (70px) + etwas Abstand
-          const scrollTop = main.scrollTop + rect.top - mainRect.top - 16;
-          main.scrollTo({ top: scrollTop, behavior: 'smooth' });
-        };
-        
-        menu.appendChild(a);
-      }
-    });
-  }, 400); // nach dem Laden der Kacheltexte
+  const tiles = document.querySelectorAll('.tile');
+  menu.innerHTML = '';
+  
+  tiles.forEach((tile, i) => {
+    const h2 = tile.querySelector('h2');
+    if (h2) {
+      // Kachel bekommt eine ID, falls nicht vorhanden
+      tile.id = tile.id || 'tile-scroll-' + (i + 1);
+      
+      const a = document.createElement('a');
+      a.textContent = h2.textContent;
+      a.href = '#' + tile.id;
+      
+      a.onclick = (e) => {
+        e.preventDefault();
+        const main = document.getElementById('main-scroll-inner');
+        const rect = tile.getBoundingClientRect();
+        const mainRect = main.getBoundingClientRect();
+        // Scroll-Offset: Headerhöhe (70px) + etwas Abstand
+        const scrollTop = main.scrollTop + rect.top - mainRect.top - 16;
+        main.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      };
+      
+      menu.appendChild(a);
+    }
+  });
 }
 
-// Nach dem Laden der Kacheltexte erneut aufrufen
-document.addEventListener('DOMContentLoaded', createTileMenu);
-setTimeout(createTileMenu, 1200);
+// Menü wird von tile-loader.js aufgerufen, wenn Tiles geladen sind
+document.addEventListener('DOMContentLoaded', () => {
+  // Fallback: Versuche Menü nach 2 Sekunden zu erstellen, falls es noch nicht da ist
+  setTimeout(() => {
+    if (document.getElementById('tile-menu').children.length === 0) {
+      createTileMenu();
+    }
+  }, 2000);
+});

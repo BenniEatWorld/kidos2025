@@ -112,6 +112,13 @@
           const el = document.getElementById('tile-content-' + (i + 1));
           if (el) el.innerHTML = html;
         });
+        
+        // Menü nach dem Laden aller Tiles erstellen
+        setTimeout(() => {
+          if (typeof createTileMenu === 'function') {
+            createTileMenu();
+          }
+        }, 200);
     });
   }
   
