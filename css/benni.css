@@ -184,7 +184,7 @@ main::-webkit-scrollbar-thumb {
 .custom-scrollbar {
   position: fixed;
   right: 0;
-  top: 70px; /* exakt Höhe des Headers */
+  top: 120px; /* exakt Höhe des Headers */
   bottom: 30px; /* exakt Höhe des Footers */
   width: 18px;
   z-index: 1200;

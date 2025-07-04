@@ -58,7 +58,7 @@ function createTileMenu() {
         const main = document.getElementById('main-scroll-inner');
         const rect = tile.getBoundingClientRect();
         const mainRect = main.getBoundingClientRect();
-        // Scroll-Offset: Headerhöhe (70px) + etwas Abstand
+        // Scroll-Offset: Headerhöhe (120px) + etwas Abstand
         const scrollTop = main.scrollTop + rect.top - mainRect.top - 16;
         main.scrollTo({ top: scrollTop, behavior: 'smooth' });
       };
