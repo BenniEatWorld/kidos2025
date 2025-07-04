@@ -311,7 +311,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
-  transition: all 0.15s ease;
+  transition: opacity 0.1s ease, visibility 0.1s ease, transform 0.1s ease;
   z-index: 9999;
   margin-top: 0px;
 }
