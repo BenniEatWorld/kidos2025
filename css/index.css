@@ -158,6 +158,10 @@
   margin-top: auto;
   position: relative;
   z-index: 150;
+  gap: 2em;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 50px;
 }
 
 .main-header .logo {

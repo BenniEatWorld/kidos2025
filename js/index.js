@@ -44,8 +44,8 @@ function createTileMenu() {
   
   // Entferne alle bestehenden Links (außer Overflow-Button)
   const overflowBtn = document.getElementById('menu-overflow-btn');
-  menu.innerHTML = '';
-  if (overflowBtn) menu.appendChild(overflowBtn);
+  const existingLinks = menu.querySelectorAll('a');
+  existingLinks.forEach(link => link.remove());
   
   const menuLinks = [];
   
@@ -82,6 +82,12 @@ function createTileMenu() {
   setTimeout(() => {
     handleMenuOverflow();
   }, 100);
+  
+  // Debug: Erzwinge eine weitere Überprüfung nach 1 Sekunde
+  setTimeout(() => {
+    console.log('Forced overflow check after 1 second');
+    handleMenuOverflow();
+  }, 1000);
 }
 
 // Overflow-Handling für das Menü
@@ -90,79 +96,97 @@ function handleMenuOverflow() {
   const overflowBtn = document.getElementById('menu-overflow-btn');
   const dropdown = document.getElementById('menu-dropdown');
   
-  if (!menu || !overflowBtn || !dropdown) return;
+  if (!menu || !overflowBtn || !dropdown) {
+    return;
+  }
   
+  // Sammle alle Links aus Menü UND Dropdown
   const menuLinks = Array.from(menu.querySelectorAll('a'));
-  const menuRect = menu.getBoundingClientRect();
-  const availableWidth = menuRect.width - 32; // Abzug für Padding
-  const overflowBtnWidth = 50; // Reduzierte geschätzte Breite
+  const dropdownLinks = Array.from(dropdown.querySelectorAll('a'));
+  const allLinks = [...menuLinks, ...dropdownLinks];
   
-  // Reset: Alle Links zurück ins Hauptmenü
-  dropdown.innerHTML = '';
+  if (allLinks.length === 0) {
+    return;
+  }
+  
+  // Reset: Verstecke Overflow-Button und leere Dropdown
   overflowBtn.style.display = 'none';
+  dropdown.innerHTML = '';
   dropdown.style.opacity = '0';
   dropdown.style.visibility = 'hidden';
   
-  menuLinks.forEach(link => {
+  // Füge alle Links zurück ins Hauptmenü ein
+  allLinks.forEach(link => {
     if (!menu.contains(link)) {
-      menu.insertBefore(link, overflowBtn);
+      // Erstelle neuen Link im Menü
+      const menuLink = document.createElement('a');
+      menuLink.textContent = link.textContent;
+      menuLink.href = link.href;
+      menuLink.onclick = link.onclick;
+      menu.insertBefore(menuLink, overflowBtn);
     }
   });
   
-  // Warte kurz, damit die Elemente gerendert sind
-  setTimeout(() => {
-    let totalWidth = 0;
-    const visibleLinks = [];
-    const hiddenLinks = [];
+  // Warte auf nächsten Frame für korrekte Measurements
+  requestAnimationFrame(() => {
+    const menuRect = menu.getBoundingClientRect();
+    const availableWidth = menuRect.width - 40; // Padding berücksichtigen
+    const overflowBtnWidth = 60;
     
-    // Messe die tatsächliche Breite jedes Links
-    for (let i = 0; i < menuLinks.length; i++) {
-      const link = menuLinks[i];
-      const linkRect = link.getBoundingClientRect();
-      const linkWidth = linkRect.width + 32; // 2em gap zwischen Links
+    const currentLinks = Array.from(menu.querySelectorAll('a'));
+    let totalWidth = 0;
+    let visibleCount = 0;
+    
+    // Berechne wie viele Links sichtbar bleiben können
+    for (let i = 0; i < currentLinks.length; i++) {
+      const link = currentLinks[i];
+      const linkWidth = link.getBoundingClientRect().width + 24; // Gap zwischen Links
       
-      // Prüfe ob dieser Link noch passt (+ Platz für Overflow-Button falls nötig)
-      const wouldNeedOverflow = i < menuLinks.length - 1; // Nicht der letzte Link
-      const requiredSpace = wouldNeedOverflow ? overflowBtnWidth : 0;
+      // Wenn es nicht der letzte Link ist, prüfe ob noch Platz für Overflow-Button ist
+      const isLastLink = i === currentLinks.length - 1;
+      const needsOverflowSpace = !isLastLink;
+      const requiredSpace = needsOverflowSpace ? overflowBtnWidth : 0;
       
       if (totalWidth + linkWidth + requiredSpace <= availableWidth) {
-        visibleLinks.push(link);
         totalWidth += linkWidth;
+        visibleCount++;
       } else {
-        // Alle restlichen Links verstecken
-        for (let j = i; j < menuLinks.length; j++) {
-          hiddenLinks.push(menuLinks[j]);
-        }
         break;
       }
     }
     
-    // Versteckte Links ins Dropdown verschieben
-    if (hiddenLinks.length > 0) {
+    // Wenn nicht alle Links sichtbar sind, verschiebe überschüssige ins Dropdown
+    if (visibleCount < currentLinks.length) {
       overflowBtn.style.display = 'block';
       
-      // Positioniere das Dropdown richtig
-      const btnRect = overflowBtn.getBoundingClientRect();
-      dropdown.style.top = (btnRect.bottom + 8) + 'px';
-      dropdown.style.right = (window.innerWidth - btnRect.right) + 'px';
-      
-      hiddenLinks.forEach(link => {
-        const dropdownLink = link.cloneNode(true);
-        dropdownLink.onclick = link.onclick; // Event-Handler kopieren
+      // Verstecke überschüssige Links und füge sie zum Dropdown hinzu
+      for (let i = visibleCount; i < currentLinks.length; i++) {
+        const link = currentLinks[i];
+        
+        // Erstelle Dropdown-Link
+        const dropdownLink = document.createElement('a');
+        dropdownLink.textContent = link.textContent;
+        dropdownLink.href = link.href;
+        dropdownLink.onclick = link.onclick;
         dropdown.appendChild(dropdownLink);
+        
+        // Entferne aus Menü
         link.remove();
+      }
+      
+      // Positioniere Dropdown
+      requestAnimationFrame(() => {
+        const btnRect = overflowBtn.getBoundingClientRect();
+        dropdown.style.top = (btnRect.bottom + 8) + 'px';
+        dropdown.style.right = (window.innerWidth - btnRect.right) + 'px';
       });
       
-      // Event-Listener für Hover (nur einmal setzen)
-      overflowBtn.removeEventListener('mouseenter', showDropdown);
-      overflowBtn.removeEventListener('mouseleave', hideDropdownDelayed);
-      dropdown.removeEventListener('mouseleave', hideDropdown);
-      
-      overflowBtn.addEventListener('mouseenter', showDropdown);
-      overflowBtn.addEventListener('mouseleave', hideDropdownDelayed);
-      dropdown.addEventListener('mouseleave', hideDropdown);
+      // Event-Listener für Hover
+      overflowBtn.onmouseenter = showDropdown;
+      overflowBtn.onmouseleave = hideDropdownDelayed;
+      dropdown.onmouseleave = hideDropdown;
     }
-  }, 50);
+  });
 }
 
 // Dropdown anzeigen
@@ -273,3 +297,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   });
 });
+
+// Debug-Funktionen (können aus der Konsole aufgerufen werden)
+window.debugMenu = function() {
+  const menu = document.getElementById('tile-menu');
+  const overflowBtn = document.getElementById('menu-overflow-btn');
+  const dropdown = document.getElementById('menu-dropdown');
+  
+  console.log('=== MENU DEBUG ===');
+  console.log('Menu element:', menu);
+  console.log('Menu width:', menu?.getBoundingClientRect().width);
+  console.log('Menu links:', menu?.querySelectorAll('a').length);
+  console.log('Overflow button:', overflowBtn);
+  console.log('Overflow button display:', overflowBtn?.style.display);
+  console.log('Dropdown:', dropdown);
+  console.log('Dropdown links:', dropdown?.querySelectorAll('a').length);
+  
+  // Liste alle Menü-Links auf
+  const links = menu?.querySelectorAll('a');
+  if (links) {
+    links.forEach((link, i) => {
+      const rect = link.getBoundingClientRect();
+      console.log(`Link ${i}: "${link.textContent}" width: ${rect.width}`);
+    });
+  }
+};
+
+window.testOverflow = function() {
+  console.log('=== TESTING OVERFLOW ===');
+  handleMenuOverflow();
+};
+
+// Test-Funktion: Erstelle ein Menü mit vielen Links zum Testen
+window.createTestMenu = function() {
+  const menu = document.getElementById('tile-menu');
+  const overflowBtn = document.getElementById('menu-overflow-btn');
+  
+  if (!menu || !overflowBtn) return;
+  
+  // Entferne alle Links
+  const existingLinks = menu.querySelectorAll('a');
+  existingLinks.forEach(link => link.remove());
+  
+  // Erstelle viele Test-Links
+  const testLinks = [
+    'Erster Link',
+    'Zweiter Link mit langem Text',
+    'Dritter Link',
+    'Vierter sehr langer Link Name',
+    'Fünfter Link',
+    'Sechster Link',
+    'Siebter Link mit noch längerem Text',
+    'Achter Link'
+  ];
+  
+  testLinks.forEach((text, i) => {
+    const a = document.createElement('a');
+    a.textContent = text;
+    a.href = '#test' + i;
+    a.onclick = (e) => {
+      e.preventDefault();
+      console.log('Clicked:', text);
+    };
+    menu.insertBefore(a, overflowBtn);
+  });
+  
+  console.log('Test menu created with', testLinks.length, 'links');
+  
+  // Führe Overflow-Handling aus
+  setTimeout(() => {
+    handleMenuOverflow();
+  }, 100);
+};
