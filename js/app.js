@@ -19,8 +19,8 @@ if (location.protocol === 'file:') {
     if (window.fragebogenDatei) return window.fragebogenDatei;
     // Fallback: nach Dateiname unterscheiden
     const file = location.pathname.split('/').pop();
-    if (file && file.toLowerCase().startsWith('ein')) return 'json/EIN_STD.json';
-    return 'json/FRA_STD.json';
+    if (file && file.toLowerCase().startsWith('ein')) return '../json/EIN_STD.json';
+    return '../json/FRA_STD.json';
   }
 
   function start() {

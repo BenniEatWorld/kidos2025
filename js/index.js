@@ -20,7 +20,7 @@ async function checkPassword() {
   const errorDiv = document.getElementById('pw-error');
   const hash = await sha256(input);
   if (hash === PASSWORT_HASH) {
-    window.location.href = 'kidos2025.htm';
+    window.location.href = 'app/kidos2025.htm';
   } else {
     errorDiv.textContent = 'Falsches Passwort!';
   }

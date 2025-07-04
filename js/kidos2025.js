@@ -10,16 +10,16 @@ function loadContent(url) {
 
       // Setze die richtige JSON-Datei für jede Seite
       if (url === "EB.htm") {
-        window.fragebogenDatei = 'json/FRA_STD.json';
+        window.fragebogenDatei = '../json/FRA_STD.json';
       } else if (url === "EIN.htm") {
-        window.fragebogenDatei = 'json/EIN_STD.json';
+        window.fragebogenDatei = '../json/EIN_STD.json';
       } else {
         window.fragebogenDatei = undefined;
       }
 
       if (url === "EB.htm" || url === "EIN.htm") {
         const script = document.createElement("script");
-        script.src = "app.js";
+        script.src = "../js/app.js";
         script.defer = true;
         document.body.appendChild(script);
       }

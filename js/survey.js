@@ -5,9 +5,9 @@ function setSurveyDataFile() {
   const currentPage = window.location.pathname.toLowerCase();
   
   if (currentPage.includes('eb.htm')) {
-    window.fragebogenDatei = 'json/EB_STD.json';
+    window.fragebogenDatei = '../json/EB_STD.json';
   } else if (currentPage.includes('ein.htm')) {
-    window.fragebogenDatei = 'json/EIN_STD.json';
+    window.fragebogenDatei = '../json/EIN_STD.json';
   }
 }
 
