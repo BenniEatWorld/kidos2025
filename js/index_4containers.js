@@ -37,12 +37,46 @@ function checkPassword() {
   if (password === 'kidos2025') {
     error.textContent = '';
     closeLogin();
-    // Hier könnte man zur geschützten Seite weiterleiten
-    alert('Login erfolgreich!');
+    // Öffne kidos2025.htm in einem Modal
+    openKidosModal();
   } else {
     error.textContent = 'Falsches Passwort.';
     input.value = '';
     input.focus();
+  }
+}
+
+// === KIDOS MODAL FUNCTIONALITY ===
+function openKidosModal() {
+  // Erstelle Modal HTML
+  const modalHTML = `
+    <div id="kidos-modal" class="kidos-modal-bg">
+      <div class="kidos-modal-box">
+        <div class="kidos-modal-header">
+          <h2>Kidos 2025 - Geschützter Bereich</h2>
+          <button onclick="closeKidosModal()" class="close-btn">&times;</button>
+        </div>
+        <div class="kidos-modal-content">
+          <iframe src="kidos2025.htm" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Füge Modal zum Body hinzu
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  
+  // Zeige Modal an
+  const modal = document.getElementById('kidos-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+}
+
+function closeKidosModal() {
+  const modal = document.getElementById('kidos-modal');
+  if (modal) {
+    modal.remove();
   }
 }
 

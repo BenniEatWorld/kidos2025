@@ -1,33 +1,19 @@
 // Kidos2025.htm spezifische Funktionen
 function loadContent(url) {
-  fetch(url)
-    .then(response => {
-      if (!response.ok) throw new Error("Ladevorgang fehlgeschlagen");
-      return response.text();
-    })
-    .then(html => {
-      document.getElementById("center-content").innerHTML = html;
-
-      // Setze die richtige JSON-Datei für jede Seite
-      if (url === "EB.htm") {
-        window.fragebogenDatei = '../json/FRA_STD.json';
-      } else if (url === "EIN.htm") {
-        window.fragebogenDatei = '../json/EIN_STD.json';
-      } else {
-        window.fragebogenDatei = undefined;
-      }
-
-      if (url === "EB.htm" || url === "EIN.htm") {
-        const script = document.createElement("script");
-        script.src = "../js/app.js";
-        script.defer = true;
-        document.body.appendChild(script);
-      }
-
-      window.scrollTo(0, 0);
-    })
-    .catch(err => {
-      document.getElementById("center-content").innerHTML =
-        `<p style="color: red;">Fehler beim Laden: ${err.message}</p>`;
-    });
+  // Bestimme den Titel basierend auf der URL
+  let title = 'Kidos 2025 - Geschützter Bereich';
+  if (url === 'EB.htm') {
+    title = 'Kidos 2025 - Entwicklungsbericht';
+  } else if (url === 'EIN.htm') {
+    title = 'Kidos 2025 - Entwicklungseinschätzung';
+  }
+  
+  // Aktualisiere den Modal-Titel im Haupt-Modal
+  const modalTitle = parent.document.querySelector('.kidos-modal-header h2');
+  if (modalTitle) {
+    modalTitle.textContent = title;
+  }
+  
+  // Lade den neuen Inhalt im aktuellen Iframe
+  window.location.href = url;
 }
