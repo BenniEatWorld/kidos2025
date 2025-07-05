@@ -1,0 +1,191 @@
+{
+  "kategorien": [
+    {
+      "name": "Körper, Gesundheit und Wohlbefinden",
+      "unterkategorien": [
+        {
+          "name": "Körperwahrnehmung und -pflege",
+          "aussagen": [
+            "Das Kind fühlt sich im eigenen Körper wohl.",
+            "Es benennt eigene Körperteile.",
+            "Es hat ein Grundverständnis über Körperfunktionen entwickelt.",
+            "Es weiß, was dem eigenen Körper guttut und was diesem schadet.",
+            "Das Kind nimmt eigene körperliche und seelische Bedürfnisse wahr und äußert sie.",
+            "Es kennt Möglichkeiten zur Entspannung und Erholung.",
+            "Das Kind achtet auf Hygiene und Körperpflege.",
+            "Es putzt sich selbständig die Zähne.",
+            "Das Kind lebt die eigenen sexuellen Bedürfnisse lustvoll aus."
+          ]
+        },
+        {
+          "name": "Ernährung",
+          "aussagen": [
+            "Es bestehen Unverträglichkeiten oder Diäten.",
+            "Das Kind nimmt regelmäßig an den Mahlzeiten teil (Frühstück, Mittagessen, Vesper).",
+            "Es isst gerne, ausreichend und probiert verschiedene Speisen.",
+            "Es benennt besondere Vorlieben oder Ablehnungen.",
+            "Es isst und trinkt selbstständig und geschickt.",
+            "Das Kind genießt das gemeinsame Essen mit anderen und nimmt deren Bedürfnisse wahr."
+          ]
+        },
+        {
+          "name": "Bewegung und Motorik",
+          "aussagen": [
+            "Das Kind hat Freude an Bewegung und nutzt verschiedene Fortbewegungsarten (robben, rutschen, krabbeln, gehen).",
+            "Die Bewegungskoordination und Ausdauer entwickeln sich altersentsprechend.",
+            "Es bewältigt Höhen, Hindernisse und nutzt Sitzmöglichkeiten.",
+            "Das Kind wirft, fängt, balanciert, springt, klettert, rutscht und nutzt Fahrzeuge.",
+            "Es arbeitet gerne mit Ton, Knete, Papier und anderen Materialien.",
+            "Das Kind geht sicher mit Stiften, Scheren, Besteck und Werkzeugen um.",
+            "Es bindet Schuhe, fädelt Perlen auf, faltet Papier und öffnet Türen."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wahrnehmung und Kognition",
+      "unterkategorien": [
+        {
+          "name": "Visuelle, auditive und taktile Wahrnehmung",
+          "aussagen": [
+            "Das Kind schätzt Gefahren ein und orientiert sich räumlich.",
+            "Es erkennt und benennt Farben, Formen, Bilder und Einzelheiten.",
+            "Das Kind erkennt Zusammenhänge, Reihenfolgen und Abläufe.",
+            "Es unterscheidet Geräusche, Rhythmen, Richtungen und lässt sich durch akustische Reize ablenken.",
+            "Das Kind unterscheidet Gegenstände, Formen, Oberflächen und Strukturen mit dem Tastsinn.",
+            "Es lässt Körperkontakt zu."
+          ]
+        },
+        {
+          "name": "Forschen, Entdecken und Umwelt",
+          "aussagen": [
+            "Das Kind hat Freude am Gebrauch aller Sinne beim Untersuchen von Dingen und Umwelt.",
+            "Es ist ausdauernd bei Beobachtungen und Untersuchungen.",
+            "Das Kind fühlt sich durch Misserfolge/Schwierigkeiten herausgefordert und sucht aktiv nach Lösungen.",
+            "Es zeigt Interesse an Naturphänomenen, Pflanzen, Tieren und nachhaltigen Aktivitäten.",
+            "Das Kind beteiligt sich an Experimenten, forscht mit anderen und gibt Impulse weiter.",
+            "Es kann zwischen Realität und Fiktion unterscheiden."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sozial-emotionale Entwicklung und Gemeinschaft",
+      "unterkategorien": [
+        {
+          "name": "Beziehungen und Bindung",
+          "aussagen": [
+            "Das Kind geht auf andere Kinder, pädagogische Fachkräfte und Erwachsene zu.",
+            "Es sucht Nähe, Zuwendung und zeigt Bindungsverhalten.",
+            "Das Kind kann Trost annehmen und geben.",
+            "Es pflegt Freundschaften und gestaltet Kontakte zu Spielpartner*innen."
+          ]
+        },
+        {
+          "name": "Interaktion, Kooperation und Partizipation",
+          "aussagen": [
+            "Das Kind fordert andere Kinder auf, etwas zu tun und geht auf deren Aufforderungen ein.",
+            "Es wagt sich an neue, unbekannte Spiele oder Materialien heran.",
+            "Das Kind nimmt Hilfestellungen an und gibt sie weiter.",
+            "Es kann abgeben, teilen und arbeitet arbeitsteilig mit anderen zusammen.",
+            "Das Kind bringt sich in Entscheidungsprozesse der Gruppe ein, äußert Vorschläge und übernimmt Aufgaben.",
+            "Es steht für die eigenen Rechte ein und wehrt sich gegen Ungerechtigkeiten."
+          ]
+        },
+        {
+          "name": "Emotionale Kompetenzen und Resilienz",
+          "aussagen": [
+            "Das Kind drückt Lust, Unlust und Frustration aus.",
+            "Es zeigt Durchhaltevermögen und sucht Unterstützung bei Bedarf.",
+            "Das Kind kann mit Misserfolgen konstruktiv umgehen.",
+            "Es reflektiert über eigene Stärken und Schwächen."
+          ]
+        },
+        {
+          "name": "Kulturelle und familiäre Lebenswelt",
+          "aussagen": [
+            "Das Kind bringt Erfahrungen aus unterschiedlichen kulturellen Kontexten ein.",
+            "Es zeigt Interesse an anderen Kulturen, Sprachen und Lebensweisen.",
+            "Das Kind berichtet von Erlebnissen aus dem Familienalltag und nimmt an Ritualen teil."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lernen, Kreativität und Spiel",
+      "unterkategorien": [
+        {
+          "name": "Spiel- und Lernverhalten",
+          "aussagen": [
+            "Das Kind bevorzugt bestimmte Spielbereiche und reagiert auf Spielmaterial.",
+            "Es spielt selbstständig und in der Gruppe, übernimmt Rollen und äußert eigene Spielideen und -wünsche.",
+            "Das Kind bleibt für eine Weile in einer Spielsituation, kann sich aber auch verdrängen lassen oder wendet sich bei Schwierigkeiten Neuem zu.",
+            "Es malt, gestaltet, baut, konstruiert und experimentiert gerne mit Materialien.",
+            "Das Kind entwickelt eigene Geschichten, Rollenspiele oder Fantasiewelten.",
+            "Es findet kreative Lösungen für Alltagsprobleme und experimentiert mit Ausdrucksformen."
+          ]
+        },
+        {
+          "name": "Musikalität und Ausdruck",
+          "aussagen": [
+            "Das Kind musiziert, singt, wünscht sich Lieder und setzt Stimme/Bewegung als Ausdrucksmittel ein.",
+            "Es erzeugt bewusst Geräusche mit dem eigenen Körper."
+          ]
+        },
+        {
+          "name": "Medienkompetenz",
+          "aussagen": [
+            "Das Kind nutzt digitale Medien verantwortungsvoll.",
+            "Es spricht über Medienerlebnisse."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kommunikation und Sprache",
+      "unterkategorien": [
+        {
+          "name": "Sprachverhalten und -verständnis",
+          "aussagen": [
+            "Das Kind spricht viel und gerne, hat Lust auf Sprache und Sprechen.",
+            "Es äußert sich verbal, sucht Körperkontakt und reagiert auf Ansprache.",
+            "Das Kind erzählt, was auf Bildern passiert, vermutet Enden von Geschichten und verbindet Inhalte mit eigenen Erlebnissen.",
+            "Es fragt nach Bedeutungen von Wörtern/Sätzen und reagiert auf andere Sprachen.",
+            "Das Kind nutzt Zeichen- und Schreibutensilien, schreibt Buchstaben/Wörter nach und diktiert Sätze.",
+            "Es versteht Aufträge, erklärt Spielregeln, spricht sich mit Spielpartner*innen ab und stellt eigene Kreationen vor.",
+            "Das Kind erkennt und schreibt den eigenen Namen."
+          ]
+        },
+        {
+          "name": "Aussprache und Sprachstrukturen",
+          "aussagen": [
+            "Das Kind hört und bildet Laute und Lautverbindungen differenziert.",
+            "Es erkennt Reimwörter, klatscht Silben und versteht Symbole/Piktogramme.",
+            "Das Kind bildet altersgemäße Satzstrukturen, eignet sich neue Wörter an, versteht und bildet Oberbegriffe, findet Umschreibungen und nutzt Mimik/Gestik zur Kommunikation."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Selbstbild, Mitbestimmung und Werte",
+      "unterkategorien": [
+        {
+          "name": "Selbstbild und Selbstwirksamkeit",
+          "aussagen": [
+            "Das Kind äußert eigene Wünsche, Bedürfnisse und Meinungen.",
+            "Es traut sich neue Dinge zu und probiert sie aus.",
+            "Das Kind übernimmt Verantwortung für eigenes Handeln."
+          ]
+        },
+        {
+          "name": "Partizipation und Werte",
+          "aussagen": [
+            "Das Kind bringt sich in Entscheidungsprozesse ein und übernimmt Aufgaben/Rollen in der Gemeinschaft.",
+            "Es zeigt Interesse an nachhaltigen Aktivitäten und geht achtsam mit Umwelt, Pflanzen und Tieren um.",
+            "Das Kind nimmt Unterschiede und Gemeinsamkeiten differenziert wahr und zeigt Empathie."
+          ]
+        }
+      ]
+    }
+  ]
+}
