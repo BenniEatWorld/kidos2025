@@ -1,0 +1,287 @@
+/* Index.css - Neu aufgesetzt, einfach und sauber */
+
+/* === MAIN STRUCTURE === */
+.main-content {
+  height: calc(100vh - 160px);
+  position: relative;
+}
+
+.main-scroll-container {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+/* === HEADER === */
+.main-header {
+  background: var(--bg-dark-1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-top {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1em;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+}
+
+/* === MENU === */
+.header-menu {
+  background: var(--bg-dark-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  min-height: 50px;
+}
+
+.menu-link {
+  color: var(--accent-1);
+  text-decoration: none;
+  font-size: 1em;
+  opacity: 0.9;
+  transition: all 0.2s ease;
+  padding: 0.4em 0.6em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.menu-link:hover {
+  opacity: 1;
+  color: var(--accent-2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.login-link {
+  font-weight: 500;
+  color: var(--accent-2);
+}
+
+/* === TILES === */
+.tile-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2em;
+  justify-content: center;
+  margin: 3em auto 2em auto;
+  max-width: 900px;
+  padding: 0 1em;
+}
+
+.tile {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-dark-2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 200px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tile.small {
+  min-height: 200px;
+}
+
+.tile.large {
+  min-height: 300px;
+}
+
+.tile-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+.tile-content {
+  position: relative;
+  z-index: 10;
+  padding: 1.5em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.tile-content h2 {
+  color: var(--accent-2);
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+.tile-content p {
+  color: var(--text-light-2);
+  line-height: 1.5;
+}
+
+/* === LOGIN MODAL === */
+.login-modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.login-modal-box {
+  background: var(--bg-dark-1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 2em;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--accent-1);
+  font-size: 1.5em;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+.login-modal-title {
+  color: var(--accent-2);
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.login-modal-text {
+  color: var(--text-light-2);
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+#pw-input {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 0.5em;
+  background: var(--bg-dark-2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--text-light-1);
+  font-size: 1em;
+}
+
+#pw-input:focus {
+  outline: none;
+  border-color: var(--accent-2);
+}
+
+.login-error {
+  color: #ff6b6b;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 0.8em;
+  background: var(--accent-2);
+  color: var(--bg-dark-1);
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-submit-btn:hover {
+  background: var(--accent-1);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .tile-section {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+    margin: 2em auto 1em auto;
+  }
+
+  .header-menu {
+    gap: 1em;
+    padding: 0.6em;
+  }
+
+  .menu-link {
+    font-size: 0.9em;
+    padding: 0.5em 0.7em;
+  }
+
+  .header-top {
+    padding: 0.8em;
+  }
+
+  .tile {
+    min-height: 180px;
+  }
+
+  .tile.large {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-menu {
+    gap: 0.5em;
+  }
+
+  .menu-link {
+    font-size: 0.8em;
+    padding: 0.4em 0.5em;
+  }
+
+  .tile-content {
+    padding: 1em;
+  }
+
+  .login-modal-box {
+    padding: 1.5em;
+  }
+}

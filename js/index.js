@@ -142,7 +142,7 @@ function showDropdown() {
   const dropdown = document.getElementById('menu-dropdown');
   dropdown.style.opacity = '1';
   dropdown.style.visibility = 'visible';
-  dropdown.style.transform = 'translateX(-50%) translateY(0)';
+  dropdown.style.transform = 'translateX(-65%) translateY(0)';
 }
 
 // Dropdown verstecken
@@ -150,7 +150,7 @@ function hideDropdown() {
   const dropdown = document.getElementById('menu-dropdown');
   dropdown.style.opacity = '0';
   dropdown.style.visibility = 'hidden';
-  dropdown.style.transform = 'translateX(-50%) translateY(-10px)';
+  dropdown.style.transform = 'translateX(-65%) translateY(-10px)';
 }
 
 // Dropdown-Position aktualisieren
@@ -158,12 +158,8 @@ function positionDropdown() {
   const overflowBtn = document.getElementById('menu-overflow-btn');
   const dropdown = document.getElementById('menu-dropdown');
   
-  // Positionierung wird über CSS gehandhabt (zentriert)
-  if (overflowBtn && dropdown) {
-    const btnRect = overflowBtn.getBoundingClientRect();
-    dropdown.style.top = (btnRect.bottom + 5) + 'px';
-    // left und transform werden über CSS gesetzt für Zentrierung
-  }
+  // Positionierung wird komplett über CSS gehandhabt (zentriert)
+  // Keine JavaScript-Positionierung nötig
 }
 
 // Setup einfache Dropdown-Events

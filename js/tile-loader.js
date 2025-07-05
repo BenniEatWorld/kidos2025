@@ -23,6 +23,9 @@
   }
   
   function insertTiles(files) {
+    // Array zum Sammeln der Überschriften für das Menü
+    let tileHeadings = [];
+    
     // Hilfsfunktion: Links und E-Mails im Text erkennen und ersetzen
     function linkify(text) {
       // Zuerst Überschriften (## ...) erkennen und ersetzen
@@ -80,6 +83,24 @@
       return text;
     }
     
+    // Hilfsfunktion: Überschrift aus Text extrahieren
+    function extractHeading(text) {
+      const lines = text.trim().split('\n');
+      const firstLine = lines[0]?.trim();
+      // Wenn die erste Zeile nicht leer ist, verwende sie als Überschrift
+      return firstLine || 'Unbenannt';
+    }
+    
+    // Hilfsfunktion: Menü-Links mit Tile-Überschriften aktualisieren
+    function updateMenuLinks(headings) {
+      headings.forEach((heading, index) => {
+        const menuLink = document.querySelector(`a[href="#tile-${index + 1}"]`);
+        if (menuLink) {
+          menuLink.textContent = heading;
+        }
+      });
+    }
+    
     // Für jede Datei: Inhalt laden und in die Kachel einfügen
     let loadedCount = 0;
     const totalFiles = files.length;
@@ -115,6 +136,9 @@
           const el = document.getElementById('tile-content-' + (i + 1));
           if (el) el.innerHTML = html;
           
+          // Überschrift zur Liste der Tile-Überschriften hinzufügen
+          tileHeadings.push(extractHeading(txt));
+          
           // Zähle die geladenen Tiles
           loadedCount++;
           
@@ -127,6 +151,9 @@
               } else if (typeof createTileMenu === 'function') {
                 createTileMenu();
               }
+              
+              // Menü-Links mit den Tile-Überschriften aktualisieren
+              updateMenuLinks(tileHeadings);
             }, 100);
           }
         })
@@ -142,6 +169,9 @@
               } else if (typeof createTileMenu === 'function') {
                 createTileMenu();
               }
+              
+              // Menü-Links mit den Tile-Überschriften aktualisieren
+              updateMenuLinks(tileHeadings);
             }, 100);
           }
         });

@@ -33,7 +33,7 @@
   right: 0;
   width: 20px;
   background: var(--bg-dark-2);
-  border-left: 1px solid var(--accent-2);
+  border-left: none;
   display: flex;
   flex-direction: column;
   z-index: 100;
@@ -42,7 +42,7 @@
 .custom-scrollbar-arrow {
   height: 20px;
   background: var(--bg-dark-1);
-  color: var(--accent-2);
+  color: #999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,8 +53,8 @@
 }
 
 .custom-scrollbar-arrow:hover {
-  background: var(--accent-2);
-  color: var(--bg-dark-1);
+  background: #666;
+  color: #fff;
 }
 
 .custom-scrollbar-track {
@@ -67,7 +67,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  background: var(--accent-1);
+  background: #777;
   border-radius: 2px;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -75,6 +75,7 @@
 
 .custom-scrollbar-thumb:hover {
   opacity: 1;
+  background: #999;
 }
 
 /* Footer Styles - Shared across pages */

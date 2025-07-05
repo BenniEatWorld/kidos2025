@@ -193,7 +193,7 @@ main::-webkit-scrollbar-thumb {
   align-items: center;
   user-select: none;
   background: none;
-  pointer-events: none; /* wird per JS aktiviert */
+  pointer-events: auto; /* Scrollbar aktiviert */
 }
 .custom-scrollbar-track {
   flex: 1 1 auto;

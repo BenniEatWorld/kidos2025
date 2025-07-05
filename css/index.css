@@ -23,27 +23,28 @@
 }
 
 .start-login-btn {
-  background: var(--bg-dark-2);
-  color: var(--accent-2);
-  border: 1px solid var(--accent-2);
-  border-radius: 6px;
-  font-size: 1em;
-  padding: 0.35em 1.2em;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--accent-1);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  padding: 0.3em 1.5em;
   cursor: pointer;
-  box-shadow: none;
-  transition: background 0.18s, color 0.18s, border 0.18s;
-  min-width: 110px;
+  transition: all 0.2s ease;
   white-space: nowrap;
-  position: absolute;
-  top: 32px;
-  right: 16px;
+  text-align: center;
+  width: 140px;
+  opacity: 0.9;
+  font-weight: normal;
+  float: right;
+  margin-right: calc(50% - 148px);
 }
 
 .start-login-btn:hover, 
 .start-login-btn:focus {
-  background: #2d3750;
-  color: var(--accent-2);
-  border: 1px solid var(--accent-1);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
 }
 
 
@@ -150,18 +151,40 @@
 }
 
 .header-menu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   padding: 0 1em 1em 1em;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: auto;
   position: relative;
   z-index: 150;
-  gap: 2em;
-  overflow: hidden;
-  white-space: nowrap;
   min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5em;
+}
+
+.menu-link {
+  color: var(--accent-1);
+  text-decoration: none;
+  font-size: 1em;
+  opacity: 0.9;
+  transition: all 0.2s ease;
+  padding: 0.3em 0.5em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.menu-link:hover {
+  opacity: 1;
+  color: var(--accent-2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.login-link {
+  font-weight: 500;
+  color: var(--accent-2);
 }
 
 .main-header .logo {
@@ -280,7 +303,6 @@
 
 /* Menu Overflow Button - Hamburger-Menü Design */
 .menu-overflow-btn {
-  position: relative;
   color: var(--accent-1);
   opacity: 0.9;
   padding: 0.3em 1.5em;
@@ -289,18 +311,14 @@
   transition: all 0.2s ease;
   font-size: 1.1em;
   font-weight: normal;
-  flex-shrink: 0;
   z-index: 200;
   border: none;
   background: rgba(255, 255, 255, 0.02);
   user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  width: 280px;
-  margin: 0 auto;
   text-align: center;
+  width: 140px;
+  float: left;
+  margin-left: calc(50% - 148px);
 }
 
 .menu-overflow-btn:hover {
@@ -312,9 +330,10 @@
 /* Menu Dropdown - Zentriertes Design */
 .menu-dropdown {
   position: fixed;
-  top: 120px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-10px);
+  top: 100px;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-65%) translateY(-5px) !important;
   background: var(--bg-dark-1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -326,6 +345,8 @@
   transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
   z-index: 9999;
   margin-top: 0px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .menu-dropdown a {
@@ -369,17 +390,13 @@
     padding: 1em;
   }
 
-  #tile-menu {
-    gap: 1em;
+  .header-menu {
+    gap: 0.8em;
+    padding: 0 0.5em 1em 0.5em;
+  }
+
+  .menu-link {
     font-size: 0.9em;
-  }
-
-  #tile-menu a {
-    padding: 0.2em 0.5em;
-  }
-
-  .menu-dropdown {
-    right: -1em;
-    min-width: 160px;
+    padding: 0.4em 0.6em;
   }
 }
