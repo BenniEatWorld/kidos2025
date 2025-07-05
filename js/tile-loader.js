@@ -1,11 +1,11 @@
 // Kacheltexte aus TXT-Dateien automatisch erkennen und laden
 (function loadTilesAuto() {
-  // Sucht txt/tile1.txt, txt/tile2.txt, ... bis keine Datei mehr existiert (404)
+  // Sucht data/tile1.txt, data/tile2.txt, ... bis keine Datei mehr existiert (404)
   let idx = 1;
   let tileFiles = [];
   
   function tryNext() {
-    const file = `txt/tile${idx}.txt`;
+    const file = `data/tile${idx}.txt`;
     fetch(file, { cache: 'no-store' })
       .then(r => {
         if (r.ok) {
