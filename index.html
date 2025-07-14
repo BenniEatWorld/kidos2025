@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>kidos 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
   <!-- Header Container (fix) -->
@@ -16,54 +16,14 @@
 
   <!-- Menu Container (variabel) -->
   <nav class="menu-container">
-    <a href="#tile-1" class="menu-link">Tile 1</a>
-    <a href="#tile-2" class="menu-link">Tile 2</a>
-    <a href="#tile-3" class="menu-link">Tile 3</a>
-    <a href="#tile-4" class="menu-link">Tile 4</a>
-    <a href="#tile-5" class="menu-link">Tile 5</a>
-    <a href="#tile-6" class="menu-link">Tile 6</a>
+    <!-- Menü-Links werden dynamisch per JS erzeugt -->
     <a href="#" onclick="showLogin()" class="menu-link login-link">Login</a>
   </nav>
 
   <!-- Main Container (scrollbar ohne eigene Scrollbar) -->
   <main class="main-container">
     <section class="tile-section">
-      <div class="tile small" id="tile-1">
-        <img class="tile-bg" src="" alt="" />
-        <div class="tile-content" id="tile-content-1">
-          <!-- Inhalt wird per JS geladen -->
-        </div>
-      </div>
-      <div class="tile small" id="tile-2">
-        <img class="tile-bg" src="" alt="" />
-        <div class="tile-content" id="tile-content-2">
-          <!-- Inhalt wird per JS geladen -->
-        </div>
-      </div>
-      <div class="tile large" id="tile-3">
-        <img class="tile-bg" src="" alt="" />
-        <div class="tile-content" id="tile-content-3">
-          <!-- Inhalt wird per JS geladen -->
-        </div>
-      </div>
-      <div class="tile large" id="tile-4">
-        <img class="tile-bg" src="" alt="" />
-        <div class="tile-content" id="tile-content-4">
-          <!-- Inhalt wird per JS geladen -->
-        </div>
-      </div>
-      <div class="tile small" id="tile-5">
-        <img class="tile-bg" src="" alt="" />
-        <div class="tile-content" id="tile-content-5">
-          <!-- Inhalt wird per JS geladen -->
-        </div>
-      </div>
-      <div class="tile small" id="tile-6">
-        <img class="tile-bg" src="" alt="" />
-        <div class="tile-content" id="tile-content-6">
-          <!-- Inhalt wird per JS geladen -->
-        </div>
-      </div>
+      <!-- Kacheln werden dynamisch per JS eingefügt -->
     </section>
 
     <!-- Login Modal -->
@@ -77,6 +37,19 @@
         <button onclick="checkPassword()" class="login-submit-btn">Login</button>
       </div>
     </div>
+
+    <!-- Kidos2025 Modal (immer im DOM, wird per JS sichtbar) -->
+    <div id="kidos-modal" class="kidos-modal-bg" style="display:none;">
+      <div class="kidos-modal-box">
+        <div class="kidos-modal-header">
+          <h2>Kidos 2025</h2>
+          <button onclick="closeKidosModal()" class="close-btn">&times;</button>
+        </div>
+        <div class="kidos-modal-content">
+          <iframe src="kidos2025.html" title="Kidos 2025" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Footer Container (variabel) -->
@@ -85,7 +58,7 @@
       © 2025 Benjamin Geisler – Alle Rechte vorbehalten -
       <a href="https://www.benjamingeisler.de/" target="_blank" rel="noopener noreferrer">benjamingeisler.de</a>
       <span class="footer-spacer"></span>
-      <a href="#impressum" onclick="loadImpressum();return false;" class="footer-impressum-link">Impressum</a>
+      <a href="#impressum" onclick="showImpressum();return false;" class="footer-impressum-link">Impressum</a>
     </div>
   </footer>
 

@@ -102,9 +102,8 @@
     }
     
     // Für jede Datei: Inhalt laden und in die Kachel einfügen
-    let loadedCount = 0;
-    const totalFiles = files.length;
-    
+    const tileSection = document.querySelector('.tile-section');
+    tileSection.innerHTML = '';
     files.forEach((file, i) => {
       fetch(file)
         .then(r => r.ok ? r.text() : '')
@@ -113,69 +112,82 @@
           const title = lines[0] || '';
           const body = lines.slice(1).join('\n').trim();
           let html = '';
-          
           if (title) {
-            html += `<h2 style="color:var(--accent-2);margin-bottom:1em;">${linkify(title)}</h2>`;
+            html += `<h2 style=\"color:var(--accent-2);margin-bottom:1em;\">${linkify(title)}</h2>`;
           }
-          
           if (body) {
-            // Überschriften und Absätze erkennen: Nach jedem <h3> einen neuen <p> öffnen
             let htmlBody = '';
             let parts = body.split(/(##.+)/g);
             parts.forEach(part => {
               if (part.startsWith('##')) {
                 htmlBody += linkify(part) + '';
               } else if (part.trim() !== '') {
-                // Text nach Überschrift oder zwischen Absätzen
                 htmlBody += part.split(/\n\s*\n/).map(p => `<p>${linkify(p.trim())}</p>`).join('');
               }
             });
             html += htmlBody;
           }
-          
-          const el = document.getElementById('tile-content-' + (i + 1));
-          if (el) el.innerHTML = html;
-          
+          // Kachel-HTML erzeugen
+          const tileDiv = document.createElement('div');
+          tileDiv.className = 'tile';
+          tileDiv.id = 'tile-' + (i + 1);
+          tileDiv.innerHTML = `<img class=\"tile-bg\" src=\"\" alt=\"\" /><div class=\"tile-content\" id=\"tile-content-${i + 1}\">${html}</div>`;
+          tileSection.appendChild(tileDiv);
           // Überschrift zur Liste der Tile-Überschriften hinzufügen
           tileHeadings.push(extractHeading(txt));
-          
-          // Zähle die geladenen Tiles
-          loadedCount++;
-          
-          // Erstelle das Menü nur einmal, wenn alle Tiles geladen sind
-          if (loadedCount === totalFiles) {
-            console.log('All tiles loaded, creating menu for', totalFiles, 'tiles');
-            setTimeout(() => {
-              if (typeof createSimpleDropdownMenu === 'function') {
-                createSimpleDropdownMenu();
-              } else if (typeof createTileMenu === 'function') {
-                createTileMenu();
-              }
-              
-              // Menü-Links mit den Tile-Überschriften aktualisieren
-              updateMenuLinks(tileHeadings);
-            }, 100);
-          }
         })
         .catch(err => {
           console.log('Error loading tile', i + 1, ':', err);
-          loadedCount++;
-          
-          // Auch bei Fehlern das Menü erstellen, wenn alle Versuche durch sind
-          if (loadedCount === totalFiles) {
-            setTimeout(() => {
-              if (typeof createSimpleDropdownMenu === 'function') {
-                createSimpleDropdownMenu();
-              } else if (typeof createTileMenu === 'function') {
-                createTileMenu();
-              }
-              
-              // Menü-Links mit den Tile-Überschriften aktualisieren
-              updateMenuLinks(tileHeadings);
-            }, 100);
-          }
         });
     });
+    setTimeout(() => {
+      updateMenuLinks(tileHeadings);
+      // Menü dynamisch erzeugen
+      const menuContainer = document.querySelector('.menu-container');
+      // Speichere Login-Link, falls vorhanden
+      const loginLink = menuContainer.querySelector('.login-link');
+      menuContainer.innerHTML = '';
+      tileHeadings.forEach((heading, i) => {
+        const a = document.createElement('a');
+        a.href = `#tile-${i + 1}`;
+        a.className = 'menu-link';
+        a.textContent = heading;
+        menuContainer.appendChild(a);
+      });
+      if (loginLink) {
+        loginLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (typeof showLogin === 'function') showLogin();
+        });
+        menuContainer.appendChild(loginLink);
+      }
+      // Sanftes Scrollen für Menü-Links
+      menuContainer.querySelectorAll('.menu-link:not(.login-link)').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href.startsWith('#tile-')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              // Nach dem Scrollen sicherstellen, dass das Tile wirklich ganz oben ist (Workaround für Scroll-Ende-Problem)
+              setTimeout(() => {
+                const rect = target.getBoundingClientRect();
+                // Prüfen, ob das Tile nicht ganz oben ist (z.B. weil Seite zu kurz)
+                if (rect.top !== 0) {
+                  // Zielposition berechnen (relativ zum Dokument)
+                  const scrollY = window.scrollY + rect.top;
+                  window.scrollTo({ top: scrollY, behavior: 'auto' });
+                }
+              }, 400); // Timeout passend zur Scroll-Animation
+            }
+          }
+        });
+      });
+      if (typeof startTileBackgroundsIndividually === 'function') {
+        startTileBackgroundsIndividually();
+      }
+    }, 800);
   }
   
   tryNext();

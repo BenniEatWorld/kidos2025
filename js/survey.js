@@ -2,12 +2,12 @@
 
 // Funktion zum Setzen der Fragebogen-Datei basierend auf der aktuellen Seite
 function setSurveyDataFile() {
-  const currentPage = window.location.pathname.toLowerCase();
-  
-  if (currentPage.includes('eb.htm')) {
-    window.fragebogenDatei = '../json/EB_STD.json';
-  } else if (currentPage.includes('ein.htm')) {
-    window.fragebogenDatei = '../json/EIN_STD.json';
+  // Immer absolut zum Server-Root auflösen, damit es im Iframe und direkt funktioniert
+  const path = window.location.pathname.toLowerCase();
+  if (path.endsWith('/eb.html') || path.endsWith('eb.html')) {
+    window.fragebogenDatei = 'data/FRA_STD.json';
+  } else if (path.endsWith('/ein.html') || path.endsWith('ein.html')) {
+    window.fragebogenDatei = 'data/EIN_STD.json';
   }
 }
 

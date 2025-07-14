@@ -19,21 +19,39 @@ if (location.protocol === 'file:') {
     if (window.fragebogenDatei) return window.fragebogenDatei;
     // Fallback: nach Dateiname unterscheiden
     const file = location.pathname.split('/').pop();
-    if (file && file.toLowerCase().startsWith('ein')) return '../json/EIN_STD.json';
-    return '../json/FRA_STD.json';
+    if (file && file.toLowerCase().startsWith('ein')) return 'data/EIN_STD.json';
+    return 'data/FRA_STD.json';
   }
 
   function start() {
     const jsonFile = getFragebogenDatei();
+    console.log('[DEBUG] Lade JSON:', jsonFile);
     fetch(jsonFile)
-      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(r => {
+        console.log('[DEBUG] Fetch-Status:', r.status, r.ok);
+        if (!r.ok) throw new Error('HTTP-Status ' + r.status);
+        return r.json();
+      })
       .then(js => {
+        console.log('[DEBUG] JSON geladen:', js);
         config = js;
         savedRatings = JSON.parse(localStorage.getItem('ratings') || '{}');
         initForm();
-        renderTable();
+    renderTable();
+    // Nach dem Rendern zur Tabelle scrollen und hervorheben
+    setTimeout(() => {
+      const table = document.getElementById('rating-table');
+      if (table) {
+        table.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        table.style.boxShadow = '0 0 0 6px #ff00cc, 0 0 30px 10px #00ffcc';
+        setTimeout(() => { table.style.boxShadow = ''; }, 2000);
+      }
+    }, 400);
       })
-      .catch(e => alert('Fehler beim Laden der Konfiguration: ' + e));
+      .catch(e => {
+        console.error('Fehler beim Laden der Konfiguration:', e);
+        alert('Fehler beim Laden der Konfiguration: ' + e);
+      });
 
     setupButtons();
   }
@@ -60,44 +78,57 @@ if (location.protocol === 'file:') {
 
   function renderTable() {
     const tbody = document.querySelector('#rating-table tbody');
-    if (!tbody || !config?.kategorien) return;
+    console.log('[DEBUG] renderTable: config.kategorien =', config?.kategorien);
+    if (!tbody || !config?.kategorien) {
+      console.warn('[DEBUG] Kein tbody oder keine Kategorien gefunden!');
+      return;
+    }
     tbody.innerHTML = '';
     let sid = 1;
 
-    if (!Array.isArray(config.kategorien)) return;
-    config.kategorien.forEach(cat => {
+    if (!Array.isArray(config.kategorien)) {
+      console.warn('[DEBUG] config.kategorien ist kein Array!');
+      return;
+    }
+    config.kategorien.forEach((cat, i) => {
       // Kompatibilität: "kategorie" oder "name"
       const catName = cat.kategorie || cat.name || '';
+      console.log(`[DEBUG] Kategorie ${i}:`, catName, cat);
       const trCat = document.createElement('tr');
       trCat.className = 'category-row';
       trCat.innerHTML = `<th colspan="7">${catName}</th>`;
       tbody.appendChild(trCat);
 
       const subs = Array.isArray(cat.unterkategorien) ? cat.unterkategorien : [];
-      subs.forEach(sub => {
+      subs.forEach((sub, j) => {
         // Kompatibilität: "unterkategorie" oder "name"
         const subName = sub.unterkategorie || sub.name || '';
+        console.log(`[DEBUG]   Unterkategorie ${j}:`, subName, sub);
         const trSub = document.createElement('tr');
         trSub.className = 'subcategory-row';
         trSub.innerHTML = `<th colspan="7">${subName}</th>`;
         tbody.appendChild(trSub);
 
         const aussagen = Array.isArray(sub.aussagen) ? sub.aussagen : [];
-        aussagen.forEach(text => {
+        aussagen.forEach((text, k) => {
+          console.log(`[DEBUG]     Aussage ${k}:`, text);
           const tr = document.createElement('tr');
           const tdA = document.createElement('td');
           tdA.textContent = text;
           tr.appendChild(tdA);
 
-          ratingLabels.forEach((_, idx) => {
+          ratingLabels.forEach((label, idx) => {
             const td = document.createElement('td');
             const inp = document.createElement('input');
             inp.type = 'radio';
             inp.name = 'rating-' + sid;
             inp.value = idx;
-            if (savedRatings[sid] == idx) inp.checked = true;
+            inp.setAttribute('data-tooltip', label); // Benutzerdefiniertes Attribut für Tooltip
+            // Bewertung basierend auf Aussage-Text laden
+            const ratingKey = text.trim();
+            if (savedRatings[ratingKey] == idx) inp.checked = true;
             inp.addEventListener('change', () => {
-              savedRatings[sid] = idx;
+              savedRatings[ratingKey] = idx;
               localStorage.setItem('ratings', JSON.stringify(savedRatings));
             });
             td.appendChild(inp);
@@ -142,6 +173,8 @@ if (location.protocol === 'file:') {
 
     document.getElementById('export-btn')?.addEventListener('click', () => {
       const survey = JSON.parse(localStorage.getItem('surveyData') || '{}');
+      // Aktuelle Bewertungen aus localStorage laden
+      const currentRatings = JSON.parse(localStorage.getItem('ratings') || '{}');
       const now = new Date();
       const dateIso = survey.date || now.toISOString().slice(0, 10);
       const datePart = dateIso.replace(/-/g, '');
@@ -160,7 +193,8 @@ if (location.protocol === 'file:') {
           rows.push([`Unterkategorie: ${sub.name}`]);
           rows.push(['Aussage', 'Bewertung']);
           sub.aussagen.forEach(text => {
-            const idx = savedRatings[sid];
+            const ratingKey = text.trim();
+            const idx = currentRatings[ratingKey];
             const ratingText = (idx != null) ? ratingLabels[idx] : '';
             rows.push([text, ratingText]);
             sid++;

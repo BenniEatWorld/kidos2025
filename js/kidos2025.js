@@ -2,9 +2,9 @@
 function loadContent(url) {
   // Bestimme den Titel basierend auf der URL
   let title = 'Kidos 2025 - Geschützter Bereich';
-  if (url === 'EB.htm') {
+  if (url === 'eb.html') {
     title = 'Kidos 2025 - Entwicklungsbericht';
-  } else if (url === 'EIN.htm') {
+  } else if (url === 'ein.html') {
     title = 'Kidos 2025 - Entwicklungseinschätzung';
   }
   

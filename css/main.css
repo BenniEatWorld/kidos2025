@@ -1,3 +1,7 @@
+/* Fließtext in den Kacheln immer Blocksatz */
+.tile-content p {
+  text-align: justify;
+}
 /* === IMPRESSUM MODAL === */
 
 .impressum-modal {
@@ -181,11 +185,12 @@ body {
 }
 
 /* === TILE SECTION === */
+
 .tile-section {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 2em;
-  justify-content: center;
+  align-items: center;
   margin: 2em auto;
   max-width: 900px;
   padding: 0 1em 2em 1em;
@@ -201,15 +206,38 @@ body {
 
 .tile:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: var(--bg-dark-3, #2d2d2d);
+  transition: background 0.2s, box-shadow 0.2s;
 }
+
+/* Kleine Kacheln quadratisch */
+
 
 .tile.small {
-  min-height: 280px;
+  width: 100%;
+  min-width: 400px;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 200px;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  display: block;
 }
 
+/* Große Kacheln gleiche Höhe wie kleine */
+
+
 .tile.large {
-  min-height: 320px;
-  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 400px;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 200px;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  display: block;
 }
 
 .tile-bg {
@@ -222,21 +250,32 @@ body {
   opacity: 0.3;
 }
 
+/* Tile-Content: max-height, Überlauf verstecken, ...mehr anzeigen */
+
+
 .tile-content {
   position: relative;
   z-index: 10;
-  padding: 1.5em;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  padding: 1.2em 2em;
+  min-height: 8em;
+  max-height: none;
+  overflow: visible;
+  text-align: left;
+  cursor: pointer;
 }
+
+/* ...mehr am Zeilenende bei Überlauf simulieren */
+
+
+
+/* Overlay wird per JS-Klasse .show-more gesetzt */
 
 .tile-content h2 {
   color: var(--accent-2);
   font-size: 1.4em;
   margin-bottom: 0.5em;
+  text-align: left;
+  margin-top: 0;
 }
 
 .tile-content p {

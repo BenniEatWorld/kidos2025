@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Entwicklungsbericht - kidos 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/main.css" />
   <style>
     body {
       margin: 0;
@@ -72,22 +72,35 @@
     }
     
     .table-wrapper {
-      overflow-x: auto;
       margin: 1.5em 0;
       background: #2d2d2d;
       border: 1px solid #555;
+      flex-shrink: 0 !important;
+      /* Keine eigene Scrollbox, volle Breite */
     }
     
     #rating-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.9em;
+      background: #2d2d2d;
     }
     
     #rating-table th, #rating-table td {
-      border: 1px solid #555;
+      border: 0px solid #555;
       padding: 0.6em 0.4em;
       text-align: center;
+      background: #222 !important;
+      color: #fff !important;
+      min-width: 80px;
+    }
+    /* Entfernt Outline auf Zeilen, da dies zu Darstellungsproblemen führen kann */
+    /* #rating-table tr {
+      outline: 2px dashed #00ffcc;
+    } */
+    /* Mindestbreite für Bewertungsspalten */
+    #rating-table col.rating {
+      min-width: 80px;
     }
     
     #rating-table th:first-child, #rating-table td:first-child {
@@ -104,9 +117,48 @@
     }
     
     #rating-table input[type="radio"] {
-      width: 1.2em;
-      height: 1.2em;
+      width: 1.8em;
+      height: 1.8em;
       accent-color: #38b0f3;
+      cursor: pointer;
+    }
+    
+    /* Spezielle Gestaltung für "irrelevant / nicht bewertbar" Radiobuttons */
+    #rating-table input[type="radio"][value="0"] {
+      accent-color: #666;
+      filter: brightness(0.7);
+    }
+    
+    #rating-table input[type="radio"][value="0"]:checked {
+      accent-color: #888;
+    }
+    
+    /* Tooltip-Optimierung für schnellere Anzeige */
+    #rating-table input[type="radio"]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      background: #333;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 1000;
+      pointer-events: none;
+      margin-top: 25px;
+      margin-left: -20px;
+    }
+    
+    #rating-table input[type="radio"] {
+      position: relative;
+    }
+    
+    #rating-table tr:hover {
+      background-color: #3a3a3a !important;
+    }
+    
+    #rating-table tr:hover td {
+      background-color: #3a3a3a !important;
     }
     
     .export-container {
@@ -135,17 +187,33 @@
     .hidden-file-input {
       display: none;
     }
+
+    /* --- CSS-Reset für Tabelle: Macht sie immer sichtbar, überschreibt main.css --- */
+    #rating-table, #rating-table th, #rating-table td, #rating-table tr, #rating-table thead, #rating-table tbody {
+      display: revert !important;
+      visibility: visible !important;
+      height: revert !important;
+      width: revert !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+      opacity: 1 !important;
+      color: revert !important;
+      background: revert !important;
+      position: static !important;
+    }
   </style>
 </head>
 <body>
+
+  <!-- ...existing code... -->
+
   <h1 class="survey-title">ENTWICKLUNGSBERICHT</h1>
-  
   <div class="survey-info-box">
     In diesem Entwicklungsbericht werden die individuellen Fortschritte und Kompetenzen eines Kindes dokumentiert. Bitte füllen Sie die Felder aus und bewerten Sie die Aussagen nach bestem Wissen und Gewissen.
   </div>
-
   <h2 class="section-heading">Erhebungsdaten</h2>
-
   <form id="survey-form" class="form-section">
     <div class="form-row">
       <label>Name<br>
@@ -164,10 +232,8 @@
       </label>
     </div>
   </form>
-
   <h3 class="section-subheading">Aussagen bewerten</h3>
-
-  <div class="table-wrapper">
+  <div class="table-wrapper" style="width:100%;">
     <table id="rating-table">
       <colgroup>
         <col class="aussage" />
@@ -197,8 +263,8 @@
 
   <input type="file" id="load-file" accept=".csv" class="hidden-file-input" />
 
+  <script src="js/survey.js"></script>
   <script src="js/app.js"></script>
   <script src="js/csv-parser.js"></script>
-  <script src="js/survey.js"></script>
 </body>
 </html>

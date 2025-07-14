@@ -1,14 +1,16 @@
 // Impressum Modal Funktionalität
 function loadImpressum() {
-  // Nur laden wenn noch nicht vorhanden
-  if (document.getElementById('impressum-modal')) {
+  // Nur laden, wenn das Modal noch keinen Inhalt hat
+  const modal = document.getElementById('impressum-modal');
+  if (modal && modal.innerHTML.trim() !== '') {
     return Promise.resolve();
   }
-  
   return fetch('templates/impressum.html')
     .then(response => response.text())
     .then(html => {
-      document.body.insertAdjacentHTML('beforeend', html);
+      if (modal) {
+        modal.innerHTML = html;
+      }
     })
     .catch(error => {
       console.error('Fehler beim Laden des Impressums:', error);
