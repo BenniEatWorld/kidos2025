@@ -5,139 +5,9 @@
   <title>Entwicklungseinschätzung - kidos 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/main.css" />
-  <style>
-    body {
-      margin: 0;
-      padding: 1.5em;
-      font-family: system-ui, sans-serif;
-      background: #1e1e1e;
-      color: #E5E2D8;
-      line-height: 1.4;
-    }
-    
-    .survey-title {
-      color: #38b0f3;
-      text-align: center;
-      margin-bottom: 1em;
-      font-size: 1.8em;
-      font-weight: 600;
-    }
-    
-    .survey-info-box {
-      background: #2d2d2d;
-      padding: 1em;
-      margin-bottom: 2em;
-      border-left: 3px solid #38b0f3;
-      font-size: 0.95em;
-      color: #CAC3AE;
-    }
-    
-    .section-heading {
-      color: #38b0f3;
-      font-size: 1.3em;
-      margin: 2em 0 1em 0;
-    }
-    
-    .section-subheading {
-      color: #CAC3AE;
-      font-size: 1.1em;
-      margin: 1.5em 0 0.75em 0;
-    }
-    
-    .form-section {
-      margin-bottom: 2em;
-    }
-    
-    .form-row {
-      display: flex;
-      gap: 1.5em;
-      margin-bottom: 1em;
-      flex-wrap: wrap;
-    }
-    
-    .form-row label {
-      flex: 1;
-      min-width: 200px;
-    }
-    
-    .form-row input {
-      width: 100%;
-      padding: 0.6em;
-      margin-top: 0.3em;
-      background: #2d2d2d;
-      border: 1px solid #555;
-      color: #E5E2D8;
-      font-size: 1em;
-      border-radius: 3px;
-    }
-    
-    .table-wrapper {
-      overflow-x: auto;
-      margin: 1.5em 0;
-      background: #2d2d2d;
-      border: 1px solid #555;
-    }
-    
-    #rating-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9em;
-    }
-    
-    #rating-table th, #rating-table td {
-      border: 1px solid #555;
-      padding: 0.6em 0.4em;
-      text-align: center;
-    }
-    
-    #rating-table th:first-child, #rating-table td:first-child {
-      text-align: left;
-      min-width: 300px;
-    }
-    
-    #rating-table th {
-      background: #1e1e1e;
-      color: #38b0f3;
-      font-weight: 600;
-      position: sticky;
-      top: 0;
-    }
-    
-    #rating-table input[type="radio"] {
-      width: 1.2em;
-      height: 1.2em;
-      accent-color: #38b0f3;
-    }
-    
-    .export-container {
-      display: flex;
-      gap: 1em;
-      justify-content: center;
-      margin: 2em 0;
-      flex-wrap: wrap;
-    }
-    
-    .export-container button {
-      background: #187bb7;
-      color: #E5E2D8;
-      border: none;
-      padding: 0.8em 1.5em;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.2s ease;
-      border-radius: 3px;
-    }
-    
-    .export-container button:hover {
-      background: #38b0f3;
-    }
-    
-    .hidden-file-input {
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="css/ein.css" />
 </head>
-<body>
+<body class="survey-body">
   <h1 class="survey-title">ENTWICKLUNGSEINSCHÄTZUNG</h1>
   
   <div class="survey-info-box">
@@ -166,8 +36,7 @@
   </form>
 
   <h3 class="section-subheading">Aussagen bewerten</h3>
-
-  <div class="table-wrapper">
+  <div class="table-wrapper" style="width:100%;">
     <table id="rating-table">
       <colgroup>
         <col class="aussage" />
@@ -197,8 +66,8 @@
 
   <input type="file" id="load-file" accept=".csv" class="hidden-file-input" />
 
+  <script src="js/survey.js"></script>
   <script src="js/app.js"></script>
   <script src="js/csv-parser.js"></script>
-  <script src="js/survey.js"></script>
 </body>
 </html>
