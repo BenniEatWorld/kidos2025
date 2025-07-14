@@ -179,9 +179,11 @@ if (location.protocol === 'file:') {
 
       let sid = 1;
       config.kategorien.forEach(cat => {
-        rows.push([`Kategorie: ${cat.name}`]);
+        const catName = cat.kategorie || cat.name || '';
+        rows.push([`Kategorie: ${catName}`]);
         cat.unterkategorien.forEach(sub => {
-          rows.push([`Unterkategorie: ${sub.name}`]);
+          const subName = sub.unterkategorie || sub.name || '';
+          rows.push([`Unterkategorie: ${subName}`]);
           rows.push(['Aussage', 'Bewertung']);
           sub.aussagen.forEach(text => {
             const ratingKey = text.trim();
