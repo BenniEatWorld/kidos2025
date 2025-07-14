@@ -38,15 +38,6 @@ if (location.protocol === 'file:') {
         savedRatings = JSON.parse(localStorage.getItem('ratings') || '{}');
         initForm();
     renderTable();
-    // Nach dem Rendern zur Tabelle scrollen und hervorheben
-    setTimeout(() => {
-      const table = document.getElementById('rating-table');
-      if (table) {
-        table.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        table.style.boxShadow = '0 0 0 6px #ff00cc, 0 0 30px 10px #00ffcc';
-        setTimeout(() => { table.style.boxShadow = ''; }, 2000);
-      }
-    }, 400);
       })
       .catch(e => {
         console.error('Fehler beim Laden der Konfiguration:', e);
